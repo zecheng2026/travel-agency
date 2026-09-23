@@ -1,3 +1,4 @@
+
 /* =============================================
 // HuanYou Travel | Global Application Script
    ============================================= */
@@ -12,7 +13,7 @@ const Utils = {
 
 // Format currency
   formatPrice(price) {
-    return '¥' + price.toLocaleString('zh-CN');
+    return '$' + price.toLocaleString('en-US');
   },
 
 // Format date
@@ -478,6 +479,18 @@ copyright: s.copyright || '© 2026 HuanYou Travel. All rights reserved.',
               <span>${settings.siteName}</span>
             </div>
             <p class="footer-desc">${settings.description}</p>
+            <div class="footer-payments">
+              <span class="footer-payments-label">We accept</span>
+              <div class="footer-payments-row">
+                <img src="assets/payments/visa.svg" alt="Visa" />
+                <img src="assets/payments/mastercard.svg" alt="Mastercard" />
+                <img src="assets/payments/amex.svg" alt="American Express" />
+                <img src="assets/payments/jcb.svg" alt="JCB" />
+                <img src="assets/payments/discover.svg" alt="Discover" />
+                <img src="assets/payments/diners.svg" alt="Diners Club" />
+                <img src="assets/payments/maestro.svg" alt="Maestro" />
+              </div>
+            </div>
           </div>
           <div>
 <h4 class="footer-title">Quick Links</h4>
@@ -923,4 +936,4 @@ window.MobileNav = MobileNav;
       }
     } catch (err) {}
   });
-})();
+})();

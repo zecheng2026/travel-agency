@@ -1,3 +1,4 @@
+
 /* =============================================
    TravelWay 旅行社官网 - 全局样式表
    ============================================= */
@@ -1021,6 +1022,47 @@ select.form-control {
   color: rgba(255, 255, 255, 0.6);
 }
 
+.footer-payments {
+  margin-bottom: var(--space-lg);
+}
+
+.footer-payments-label {
+  display: block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: var(--space-sm);
+}
+
+.footer-payments-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.footer-payments-row img {
+  height: 24px;
+  width: auto;
+  background: #fff;
+  border-radius: 4px;
+  padding: 3px 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.18);
+  transition: transform 0.2s ease;
+}
+
+.footer-payments-row img:hover {
+  transform: translateY(-2px);
+}
+
+@media (max-width: 600px) {
+  .footer-payments-row img {
+    height: 20px;
+    padding: 2px 4px;
+  }
+}
+
 .footer-social {
   display: flex;
   gap: var(--space-md);
@@ -1105,6 +1147,48 @@ select.form-control {
   margin-top: 2px;
   flex-shrink: 0;
 }
+/* ===== Payment Icons (added by footer) ===== */
+.footer-payments {
+  margin-bottom: var(--space-lg);
+}
+
+.footer-payments-label {
+  display: block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: var(--space-sm);
+}
+
+.footer-payments-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.footer-payments-row img {
+  height: 24px;
+  width: auto;
+  background: #fff;
+  border-radius: 4px;
+  padding: 3px 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.18);
+  transition: transform 0.2s ease;
+}
+
+.footer-payments-row img:hover {
+  transform: translateY(-2px);
+}
+
+@media (max-width: 600px) {
+  .footer-payments-row img {
+    height: 20px;
+    padding: 2px 4px;
+  }
+}
+
 
 .footer-bottom {
   padding: var(--space-lg) 0;
@@ -1687,4 +1771,4 @@ select.form-control {
   .stat-number { font-size: var(--font-size-2xl); }
   .pagination-btn { width: 36px; height: 36px; }
   .modal { margin: var(--space-md); border-radius: var(--radius-lg); }
-}
+}
