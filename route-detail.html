@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" id="meta-description" content="">
+<title id="meta-title">Route Details - HuanYou Travel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+  <header class="header" id="main-header">
+    <div class="header-inner">
+<a href="index.html" class="logo"><div class="logo-icon"><i class="fas fa-paper-plane"></i></div><span>HuanYou Travel</span></a>
+      <nav class="nav-menu" id="nav-menu"></nav>
+      <div class="nav-actions">
+        <a href="tel:400-888-6789" class="header-phone"><i class="fas fa-phone-alt"></i> 400-888-6789</a>
+<a href="booking.html" class="btn btn-primary btn-sm">Book Now</a>
+      </div>
+<button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobile-nav"></nav>
+
+  <div class="page-header">
+    <div class="container">
+      <h1 class="page-title route-detail-placeholder" id="page-title"></h1>
+      <p class="page-subtitle" id="page-subtitle"></p>
+      <div class="breadcrumb">
+<a href="index.html">Home</a>
+        <span class="breadcrumb-sep">/</span>
+<a href="/routes">Tours</a>
+        <span class="breadcrumb-sep">/</span>
+<span class="current">Route Details</span>
+      </div>
+    </div>
+  </div>
+
+  <main class="section" id="route-detail-main">
+    <div class="container">
+      <div class="route-detail" id="route-detail-content">
+        <div class="route-detail-hero">
+          <img id="hero-img" src="" alt="">
+        </div>
+        <div class="route-detail-info">
+          <h1 class="route-detail-placeholder" id="info-title"></h1>
+          <p class="route-detail-subtitle" id="info-subtitle"></p>
+          <div class="route-detail-meta" id="info-meta"></div>
+          <div class="route-detail-price">
+<span class="price-label">From</span>
+            <span class="price-big route-detail-placeholder" id="price-big"></span>
+            <span class="price-original route-detail-placeholder" id="price-original"></span>
+<a href="booking.html" class="btn btn-primary btn-lg" id="booking-btn">Book Now</a>
+          </div>
+        </div>
+        <div class="route-detail-body">
+          <div class="route-detail-content-body">
+            <div class="tab-content active" id="tab-overview">
+<h2>Trip Overview</h2>
+              <p class="route-overview-summary" id="overview-summary"></p>
+<h3><i class="fas fa-route" style="color:#2E7D32;margin-right:6px"></i>Travel Route</h3>
+              <div class="route-overview-route">
+                <ul class="route-route-list" id="overview-route"></ul>
+              </div>
+<h3><i class="fas fa-star" style="color:#f59e0b;margin-right:6px"></i>Trip Highlights</h3>
+              <ul class="highlight-list" id="overview-highlights"></ul>
+            </div>
+            <div class="tab-content active" id="tab-itinerary">
+<h2>Detailed Itinerary</h2>
+              <div id="itinerary-list"></div>
+            </div>
+            <div class="tab-content active" id="tab-includes">
+<h2>What's Included</h2>
+<h3><i class="fas fa-check-circle" style="color:#2E7D32;margin-right:6px"></i>Included</h3>
+              <ul class="included-list" id="included-list"></ul>
+<h3><i class="fas fa-times-circle" style="color:#dc2626;margin-right:6px"></i>Not Included</h3>
+              <ul class="excluded-list" id="excluded-list"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+<div class="footer-logo"><i class="fas fa-paper-plane"></i><span>HuanYou Travel</span></div>
+<p class="footer-desc">Quality travel that turns every journey into a beautiful memory.</p>
+        </div>
+        <div class="footer-links">
+<h4>Quick Links</h4>
+          <ul>
+<li><a href="/routes">Tours</a></li>
+<li><a href="/destinations">Popular Destinations</a></li>
+<li><a href="/guides">Travel Guides</a></li>
+<li><a href="about.html">About Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+<h4>Popular Destinations</h4>
+          <ul>
+<li><a href="/destinations">Yunnan</a></li>
+<li><a href="/destinations">Sichuan</a></li>
+<li><a href="/destinations">Tibet</a></li>
+<li><a href="/destinations">Guangxi</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+<h4>Contact Us</h4>
+          <ul>
+            <li><i class="fas fa-phone"></i> 400-888-6789</li>
+            <li><i class="fas fa-envelope"></i> info@lututrip.com</li>
+<li><i class="fas fa-map-marker-alt"></i> Beijing, China</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+<p>&copy; 2026 HuanYou Travel. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">Sitemap</a></p>
+      </div>
+    </div>
+  </footer>
+  <script src="supabase-config.js"></script>
+  <script src="js/cloud.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/data.js"></script>
+<script>
+  (function() {
+    var params = new URLSearchParams(location.search);
+    var id = params.get('id') || 'R001';
+    var __t = 0;
+    function esc(s){
+      return String(s == null ? '' : s)
+        .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+        .replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+    }
+    function __fill() {
+      __t++;
+      if (!window.RouteRenderer) { if (__t < 8) setTimeout(__fill, 400); return; }
+      RouteRenderer.renderDetail(id).then(function(route) {
+        if (!route) { if (__t < 8) setTimeout(__fill, 1000); return; }
+        (function applyRouteSeo(route){
+          var metaTitle = document.getElementById('meta-title');
+          var metaDesc = document.getElementById('meta-description');
+          var tags = Array.isArray(route.tags) ? route.tags : [];
+          var subParts = [];
+          if (route.destination) subParts.push(route.destination);
+          if (route.days) subParts.push(route.days + ' Days');
+          if (tags.length) subParts.push(tags.slice(0, 1).join(' & '));
+          var subTitle = subParts.length ? ' | ' + subParts.slice(0, 3).join(' · ') : '';
+          var seoTitle = (route.title || 'Tour') + subTitle + ' - HuanYou Travel';
+          function applyTitle(){ if (metaTitle) metaTitle.textContent = seoTitle; }
+          applyTitle();
+          setTimeout(applyTitle, 50);
+          setTimeout(applyTitle, 200);
+          setTimeout(applyTitle, 800);
+          if (metaDesc) {
+            var raw = route.description || route.summary || route.content || '';
+            if (!raw && route.highlights && route.highlights.length) {
+              var hs = route.highlights.slice(0, 3).map(function(h){ return String(h).replace(/^[\s\-\u2022\u00b7]+/, ''); });
+              raw = 'Explore ' + (route.destination || '') + ' on this ' + (route.days || 0) + '-day tour covering ' + hs.join(', ') + '.';
+            }
+            raw = String(raw || '').replace(/\n+/g, ' ');
+            var tagSuffix = tags.length ? ' Highlights: ' + tags.join(', ') + '.' : '';
+            var budget = Math.max(40, 160 - tagSuffix.length);
+            var cut = raw.slice(0, budget);
+            var lastSpace = cut.lastIndexOf(' ');
+            if (lastSpace > 40) cut = cut.slice(0, lastSpace);
+            metaDesc.setAttribute('content', cut + tagSuffix);
+          }
+        })(route);
+
+        var heroImg = document.getElementById('hero-img');
+        var heroContainer = document.querySelector('.route-detail-hero');
+        if (heroImg) {
+          heroImg.src = route.cover || route.image || route.banner || '';
+          heroImg.alt = route.title || '';
+          heroImg.onerror = function() {
+            this.onerror = null;
+            this.src = 'https://via.placeholder.com/1200x600/E8F5E9/2E7D32?text=' + encodeURIComponent(route.title || 'Travel');
+          };
+        }
+        if (heroContainer && route.heroWidth) {
+          heroContainer.style.maxWidth = parseInt(route.heroWidth) + 'px';
+        }
+
+        var pt = document.getElementById('page-title');
+        if (pt) pt.textContent = route.title || 'Route Details';
+        var ps = document.getElementById('page-subtitle');
+        if (ps) ps.textContent = (route.destination ? route.destination + ' · ' : '') + (route.days || 0) + ' Days ' + ((route.days || 0) - 1) + ' Nights';
+
+        var it = document.getElementById('info-title');
+        if (it) it.textContent = route.title || 'Route Details';
+        var is = document.getElementById('info-subtitle');
+        if (is) is.textContent = route.subtitle || ((route.days || 0) + '-Day ' + (route.destination || '') + ' Tour');
+
+        var meta = document.getElementById('info-meta');
+        if (meta) {
+          var tagsHtml = (route.tags || []).map(function(t){ return esc(t); }).join(' · ');
+          meta.innerHTML =
+            '<span><i class="fas fa-eye"></i> ' + (route.views || 0) + ' views</span>' +
+            (route.destination ? '<span><i class="fas fa-map-marker-alt"></i> ' + esc(route.destination) + '</span>' : '') +
+            (tagsHtml ? '<span><i class="fas fa-tag"></i> ' + tagsHtml + '</span>' : '');
+        }
+
+        var priceBig = document.getElementById('price-big');
+        if (priceBig) priceBig.textContent = '¥' + (route.price || 0);
+        var priceOrig = document.getElementById('price-original');
+        if (priceOrig) priceOrig.textContent = '¥' + (route.originalPrice || Math.round((route.price || 0) * 1.2));
+        var bookingLink = document.getElementById('booking-btn');
+        if (bookingLink) bookingLink.href = 'booking.html?route=' + route.id;
+
+        var summaryEl = document.getElementById('overview-summary');
+        var summary = route.description || route.content || route.summary || '';
+        if (!summary) {
+          var hl = (route.highlights || []).join('、');
+          summary = summary = 'This is a ' + (route.days || 0) + '-day, ' + Math.max(0, (route.days || 0) - 1) + '-night trip' + (route.destination ? ' exploring ' + route.destination : '') + ', covering ' + (route.highlights || []).length + ' core attractions (' + hl + '). A professional guide accompanies you throughout' + (route.tags && route.tags.indexOf('No Shopping') >= 0 ? ', with no shopping stops' : '') + ', for a relaxed, authentic local experience.';
+        }
+        if (summaryEl) summaryEl.textContent = summary;
+
+        var routeList = document.getElementById('overview-route');
+        if (routeList && route.itinerary && route.itinerary.length) {
+          var nodes = [];
+          route.itinerary.forEach(function(d){
+            var t = d.title || '';
+            var parts = t.split('→').map(function(s){ return s.trim(); }).filter(Boolean);
+            parts.forEach(function(p){ if (nodes.indexOf(p) < 0) nodes.push(p); });
+          });
+          routeList.innerHTML = nodes.map(function(n, i){
+            return (i > 0 ? '<li class="arrow">→</li>' : '') + '<li>' + esc(n) + '</li>';
+          }).join('');
+        } else if (routeList) {
+          routeList.innerHTML = '<li>' + esc(route.destination || 'Route') + '</li>';
+        }
+
+        var hlEl = document.getElementById('overview-highlights');
+        if (hlEl) {
+          hlEl.innerHTML = (route.highlights || []).map(function(h){
+            return '<li><i class="fas fa-star"></i> ' + esc(h) + '</li>';
+          }).join('') || '<li style="padding-left:0">No highlights available</li>';
+        }
+
+        var itList = document.getElementById('itinerary-list');
+        if (itList) {
+          if (route.itinerary && route.itinerary.length) {
+            itList.innerHTML = route.itinerary.map(function(d){
+              var imgHtml = d.image
+                ? '<img class="itinerary-day-image" src="' + esc(d.image) + '" alt="' + esc(d.title || '') + '" loading="lazy" onerror="this.style.display=\'none\'"' + (d.imageWidth ? ' style="max-width:' + parseInt(d.imageWidth) + 'px"' : '') + '>'
+                : '';
+              return '<div class="itinerary-day">' +
+                '<div class="itinerary-day-header">' +
+                  '<span class="itinerary-day-num">Day ' + (d.day || '') + '</span>' +
+                  '<span class="itinerary-day-title">' + esc(d.title || '') + '</span>' +
+                '</div>' +
+                '<p>' + esc(d.description || '') + '</p>' +
+                imgHtml +
+              '</div>';
+            }).join('');
+          } else {
+            itList.innerHTML = '<p style="color:#6b7280;text-align:center;padding:32px">No detailed itinerary yet</p>';
+          }
+        }
+
+        var incEl = document.getElementById('included-list');
+        if (incEl) {
+          incEl.innerHTML = (route.included || []).map(function(x){ return '<li>' + esc(x) + '</li>'; }).join('') ||
+            '<li style="padding-left:0">No included items listed</li>';
+        }
+        var excEl = document.getElementById('excluded-list');
+        if (excEl) {
+          excEl.innerHTML = (route.excluded || []).map(function(x){ return '<li>' + esc(x) + '</li>'; }).join('') ||
+            '<li style="padding-left:0">No excluded items listed</li>';
+        }
+
+        document.querySelectorAll('.route-detail-placeholder').forEach(function(e){ e.classList.remove('route-detail-placeholder'); });
+      }).catch(function(e){ console.warn('Route detail render error:', e); });
+    }
+    __fill();
+  })();
+</script>
+</body>
+</html>

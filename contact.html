@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us - HuanYou Travel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+/* === Contact Page: Left column (info) / Right column (form) === */
+    .contact-page-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: stretch;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 20px 40px;
+    }
+    .contact-page-layout > .contact-info-section {
+      background: transparent;
+      padding: 12px 4px;
+    }
+    .contact-page-layout > .contact-form-section {
+      background: #fff;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+      padding: 28px 24px;
+    }
+    
+    .contact-page-layout > .contact-info-section {
+      grid-column: 1;
+      grid-row: 1;
+    }
+    .contact-page-layout > .contact-form-section {
+      grid-column: 2;
+      grid-row: 1;
+    }
+    .contact-page-layout > .faq-section {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      max-width: 800px;
+      margin: 24px auto 0;
+      background: #fff;
+    }
+    .contact-page-layout > .faq-section .container {
+      max-width: 100%;
+      padding: 0;
+      margin: 0;
+    }.contact-page-layout .contact-info-section .container,
+    .contact-page-layout .contact-form-section .container {
+      max-width: 100%;
+      padding: 0;
+      margin: 0;
+    }
+    .contact-page-layout .contact-info-heading {
+      font-size: 22px;
+      font-weight: 700;
+      color: #1f2937;
+      margin: 0 0 8px;
+    }
+    .contact-page-layout .contact-info-subheading {
+      font-size: 14px;
+      color: #6b7280;
+      margin: 0 0 24px;
+      line-height: 1.6;
+    }
+    .contact-page-layout .contact-info-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+    .contact-page-layout .contact-info-item {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 16px;
+      background: transparent;
+      padding: 0;
+      border: none;
+      box-shadow: none;
+    }
+    .contact-page-layout .contact-info-icon {
+      width: 28px;
+      flex-shrink: 0;
+      text-align: center;
+      font-size: 22px;
+      color: #f59e0b;
+      background: transparent !important;
+      border-radius: 0;
+      height: auto;
+    }
+    .contact-page-layout .contact-info-icon i {
+      color: #f59e0b;
+    }
+    .contact-page-layout .contact-info-content {
+      flex: 1;
+      min-width: 0;
+    }
+    .contact-page-layout .contact-info-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1f2937;
+      margin: 0 0 4px;
+    }
+    .contact-page-layout .contact-info-value {
+      font-size: 14px;
+      color: #6b7280;
+      margin: 0;
+      line-height: 1.5;
+    }
+    .contact-page-layout .contact-info-sub {
+      font-size: 13px;
+      color: #9ca3af;
+      margin: 2px 0 0;
+    }
+    .contact-page-layout .contact-form {
+      padding: 28px 24px;
+    }
+    @media (max-width: 960px) {
+      .contact-page-layout {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        padding: 40px 16px 24px;
+      }
+      .contact-page-layout .contact-info-list {
+        gap: 18px;
+      }
+      .contact-page-layout .contact-info-card {
+        min-width: 0;
+        width: 100%;
+        box-sizing: border-box;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header" id="main-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fas fa-paper-plane"></i></div>
+<span>HuanYou Travel</span>
+      </a>
+      <nav class="nav-menu" id="nav-menu"></nav>
+      <div class="nav-actions">
+        <a href="tel:400-888-6789" class="header-phone">
+          <i class="fas fa-phone-alt"></i> 400-888-6789
+        </a>
+<div class="lang-dropdown" id="lang-dropdown">
+  <button type="button" class="lang-btn" aria-label="Select language" aria-expanded="false">
+    <span>Select Language</span>
+    <i class="fas fa-chevron-down"></i>
+  </button>
+  <ul class="lang-menu" role="menu">
+    <li role="menuitem" data-lang="en" class="active">English</li>
+    <li role="menuitem" data-lang="zh-CN">中文</li>
+    <li role="menuitem" data-lang="ja">日本語</li>
+    <li role="menuitem" data-lang="es">Español</li>
+    <li role="menuitem" data-lang="ar">العربية</li>
+  </ul>
+</div>
+<div id="google_translate_element" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;"></div>
+      </div>
+<button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <nav class="mobile-nav" id="mobile-nav"></nav>
+
+  <div class="page-header">
+    <div class="container">
+<h1 class="page-title">Contact Us</h1>
+<p class="page-subtitle contact-info-placeholder">Have a question, suggestion, or just want to say hello? We'd love to hear from you.</p>
+      <div class="breadcrumb">
+<a href="index.html">Home</a>
+        <span class="breadcrumb-sep">/</span>
+<span class="current">Contact Us</span>
+      </div>
+    </div>
+  </div>
+
+  <main class="contact-page">
+    <div class="contact-page-layout">
+    <section class="contact-info-section">
+      <div class="container">
+<h2 class="contact-info-heading">Contact Information</h2>
+        <ul class="contact-info-list" id="contact-info-grid">
+          <li class="contact-info-item">
+            <i class="contact-info-icon fas fa-map-marker-alt"></i>
+            <div class="contact-info-content">
+<h3 class="contact-info-title">Address</h3>
+<p class="contact-info-value contact-info-placeholder">Beijing, China</p>
+<p class="contact-info-sub">Headquarters</p>
+            </div>
+          </li>
+          <li class="contact-info-item">
+            <i class="contact-info-icon fas fa-phone-alt"></i>
+            <div class="contact-info-content">
+<h3 class="contact-info-title">Phone</h3>
+              <p class="contact-info-value contact-info-placeholder">400-888-6789</p>
+<p class="contact-info-sub">Monday to Friday 9:00–18:00</p>
+            </div>
+          </li>
+          <li class="contact-info-item">
+            <i class="contact-info-icon fas fa-envelope"></i>
+            <div class="contact-info-content">
+<h3 class="contact-info-title">Email</h3>
+              <p class="contact-info-value contact-info-placeholder">info@lututrip.com</p>
+<p class="contact-info-sub">We will reply within 24 hours</p>
+            </div>
+          </li>
+          <li class="contact-info-item">
+            <i class="contact-info-icon fas fa-clock"></i>
+            <div class="contact-info-content">
+<h3 class="contact-info-title">Business Hours</h3>
+<p class="contact-info-value contact-info-placeholder">Monday to Sunday 09:00 – 21:00</p>
+<p class="contact-info-sub">Open every day</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="faq-section">
+      <div class="container">
+        <div class="faq-header">
+          <h2 class="faq-title">FAQ</h2>
+          <p class="faq-subtitle">Frequently asked questions</p>
+        </div>
+        <div class="faq-list" id="contact-faq-list">
+          <div class="faq-empty">FAQ 加载中...</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-form-section">
+      <div class="container">
+        <div class="contact-form-wrapper">
+          <div class="contact-form-info">
+<h2>Send a Message</h2>
+<p>Questions, suggestions, or partnership inquiries — please fill out the form below and we'll get back to you soon.</p>
+          </div>
+          <form class="contact-form" id="contact-form">
+            <div class="form-row">
+              <div class="form-group">
+<label class="form-label">Your Name <span class="required">*</span></label>
+<input type="text" class="form-control" name="name" required placeholder="Please enter your name">
+              </div>
+              <div class="form-group">
+<label class="form-label">Phone Number <span class="required">*</span></label>
+<input type="tel" class="form-control" name="phone" required placeholder="Please enter your phone number">
+              </div>
+            </div>
+            <div class="form-group">
+<label class="form-label">Email</label>
+<input type="email" class="form-control" name="email" placeholder="Please enter your email (optional)">
+            </div>
+            <div class="form-group">
+<label class="form-label">Spot Type</label>
+              <select class="form-control" name="type">
+<option value="historical">Historical & Cultural</option>
+<option value="natural">Natural Scenery</option>
+<option value="geological">Geological Wonders</option>
+<option value="folk">Folk & Ethnic Culture</option>
+<option value="museum">Museum & Exhibition</option>
+<option value="theme">Theme & Amusement</option>
+<option value="wellness">Wellness Resort</option>
+<option value="landmark">City Landmark</option>
+<option value="other">Others</option>
+              </select>
+            </div>
+            <div class="form-group">
+<label class="form-label">Message <span class="required">*</span></label>
+<textarea class="form-control" name="message" rows="5" required placeholder="When? How many people? Any special requests?"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg">
+<i class="fas fa-paper-plane"></i> Send Message
+            </button>
+          </form>
+          <div class="contact-form-success" id="contact-success" style="display:none">
+            <i class="fas fa-check-circle"></i>
+<h3>Message Sent!</h3>
+<p>Thank you for reaching out. We will reply within 24 hours.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <i class="fas fa-paper-plane"></i>
+<span>HuanYou Travel</span>
+          </div>
+<p class="footer-desc">Quality travel — making every journey a beautiful memory.</p>
+        </div>
+        <div class="footer-links">
+<h4>Quick Links</h4>
+          <ul>
+<li><a href="/routes">Tours</a></li>
+<li><a href="/destinations">Popular Destinations</a></li>
+<li><a href="/guides">Travel Guides</a></li>
+<li><a href="about.html">About Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+<h4>Popular Destinations</h4>
+          <ul>
+<li><a href="/destinations#yunnan">Yunnan</a></li>
+<li><a href="/destinations#sichuan">Sichuan</a></li>
+<li><a href="/destinations#tibet">Tibet</a></li>
+<li><a href="/destinations#guangxi">Guangxi</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+<h4>Contact Us</h4>
+          <ul>
+            <li><i class="fas fa-phone"></i> 400-888-6789</li>
+            <li><i class="fas fa-envelope"></i> info@lututrip.com</li>
+<li><i class="fas fa-map-marker-alt"></i> Beijing, China</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+<p>&copy; 2026 HuanYou Travel. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">Sitemap</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="supabase-config.js"></script>
+  <script src="js/cloud.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/data.js"></script>
+  <script>
+    function escH(t) {
+      return String(t == null ? '' : t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+    function applyContact(s) {
+      if (!s) return;
+      var cc = s.contactContent || {};
+      var hasContactContent = !!s.contactContent;
+      var sub = document.querySelector('.page-header .page-subtitle');
+      if (sub && cc.subtitle) {
+          sub.textContent = cc.subtitle;
+          sub.classList.remove('contact-info-placeholder');
+        }
+      if (cc.hours && !(Array.isArray(cc.cards) && cc.cards.length)) {
+        var cardsEl = document.querySelectorAll('#contact-info-grid .contact-info-item');
+        for (var x = 0; x < cardsEl.length; x++) {
+          var tEl = cardsEl[x].querySelector('h3');
+if (tEl && /Time|Hours|Business/.test(tEl.textContent)) {
+            var vEl = cardsEl[x].querySelector('.contact-info-content p');
+            if (vEl) {
+                vEl.textContent = cc.hours;
+                vEl.classList.remove('contact-info-placeholder');
+              }
+            break;
+          }
+        }
+      }
+      var __cardsList = (Array.isArray(cc.cards) && cc.cards.length) ? cc.cards : (s.contact && (s.contact.phone || s.contact.email || s.contact.address) ? [
+          { icon: 'fa-map-marker-alt', title: 'Address', value: s.contact.address || '', sub: 'Headquarters' },
+          { icon: 'fa-phone-alt', title: 'Phone', value: s.contact.phone || '', sub: 'Call us anytime' },
+          { icon: 'fa-envelope', title: 'Email', value: s.contact.email || '', sub: 'We reply within 24 hours' },
+          { icon: 'fa-clock', title: 'Business Hours', value: 'Monday to Sunday 09:00 – 21:00', sub: 'Open every day' }
+        ] : []);
+      if (__cardsList.length) {
+        var grid = document.getElementById('contact-info-grid');
+        if (grid) {
+          grid.innerHTML = '';
+          __cardsList.forEach(function(cd) {
+            var icon = cd.icon || 'fa-phone-alt';
+            if (icon.indexOf('fa-') !== 0) icon = 'fa-' + icon;
+            var BRAND_ICONS = ['fa-weixin','fa-whatsapp','fa-qq','fa-weibo','fa-wechat','fa-facebook','fa-twitter','fa-instagram','fa-youtube','fa-linkedin','fa-github','fa-telegram','fa-skype','fa-discord','fa-line','fa-tiktok','fa-weibo'];
+            var iconPrefix = BRAND_ICONS.indexOf(icon) >= 0 ? 'fab' : 'fas';
+            var isBrand = iconPrefix === 'fab';
+            var card = document.createElement('div');
+            card.className = 'contact-info-card';
+            var ic = document.createElement('div');
+            ic.className = 'contact-info-icon' + (isBrand ? ' is-brand' : '');
+            if (icon === 'fa-weixin') {
+              ic.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M9.5 4C5.36 4 2 6.69 2 10c0 1.81 1 3.44 2.59 4.53L4 17l2.7-1.4c.84.25 1.74.4 2.7.4h.5c-.13-.5-.2-1-.2-1.5 0-3 2.92-5.5 6.5-5.5h.5c-.5-2.5-3.5-5-7.2-5zM6.5 7c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm4 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2.5 4c-3.04 0-5.5 1.92-5.5 4.5S9.96 20 13 20c.61 0 1.18-.1 1.71-.27L16.5 21l-.16-1.59c1.31-.92 2.16-2.27 2.16-3.91C18.5 12.92 16.04 11 13 11zm-2 2c.41 0 .75.34.75.75s-.34.75-.75.75-.75-.34-.75-.75.34-.75.75-.75zm4 0c.41 0 .75.34.75.75s-.34.75-.75.75-.75-.34-.75-.75.34-.75.75-.75z"/></svg>';
+            } else if (icon === 'fa-whatsapp') {
+              ic.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M19.05 4.91A9.82 9.82 0 0 0 12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01zm-7.01 15.24c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.23 8.23 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c.01 4.54-3.69 8.23-8.23 8.23zm4.51-6.16c-.25-.12-1.46-.72-1.69-.8-.23-.08-.39-.12-.56.12-.16.25-.64.79-.79.95-.15.16-.29.18-.54.06-.25-.12-1.04-.38-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.39.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.16.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.84-.2-.49-.41-.42-.56-.43h-.48c-.16 0-.43.06-.66.31-.23.25-.86.84-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.16 1.75 2.67 4.23 3.74.59.25 1.05.41 1.41.52.59.18 1.13.16 1.56.1.48-.07 1.46-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.07-.1-.22-.16-.47-.28z"/></svg>';
+            } else {
+              ic.innerHTML = '<i class="' + iconPrefix + ' ' + escH(icon) + '"></i>';
+            }
+            var ctt = document.createElement('div');
+            ctt.className = 'contact-info-content';
+            var h = document.createElement('h3');
+            h.textContent = cd.title || '';
+            var v = document.createElement('p');
+            v.textContent = cd.value || '';
+            ctt.appendChild(h);
+            ctt.appendChild(v);
+            if (cd.sub) {
+              var sp = document.createElement('p');
+              sp.className = 'contact-info-sub';
+              sp.textContent = cd.sub;
+              ctt.appendChild(sp);
+            }
+            card.appendChild(ic);
+            card.appendChild(ctt);
+            grid.appendChild(card);
+          });
+        }
+      }
+      // 恢复所有未被自定义内容覆盖的 placeholder（默认卡片值/副标题）可见
+      var _phEls = document.querySelectorAll('.contact-info-placeholder');
+      for (var _pi = 0; _pi < _phEls.length; _pi++) {
+        _phEls[_pi].classList.remove('contact-info-placeholder');
+      }
+      // FAQ 渲染
+      var faqListEl = document.getElementById('contact-faq-list');
+      if (faqListEl && Array.isArray(cc.faqs) && cc.faqs.length) {
+        faqListEl.innerHTML = '';
+        cc.faqs.forEach(function(item, idx) {
+          if (!item || !item.q) return;
+          var det = document.createElement('details');
+          det.className = 'faq-item';
+          if (idx === 0) det.setAttribute('open', '');
+          var sum = document.createElement('summary');
+          sum.innerHTML = '<span class="faq-q-text">' + String(item.q).replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</span><i class="fas fa-chevron-down faq-arrow"></i>';
+          var body = document.createElement('div');
+          body.className = 'faq-answer';
+          body.innerHTML = String(item.a || '').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n\n/g, '<br><br>').replace(/\n/g, '<br>');
+          det.appendChild(sum);
+          det.appendChild(body);
+          faqListEl.appendChild(det);
+        });
+      } else if (faqListEl) {
+        faqListEl.innerHTML = '<div class="faq-empty">' + (hasContactContent ? '暂无 FAQ，请在后台配置。' : 'FAQ 加载中…') + '</div>';
+      }
+    }
+    DataLoader.loadSettings().then(applyContact).catch(function(){});
+    if (window.ContactForm) ContactForm.init('contact-form', 'contact-success');
+  </script>
+</body>
+</html>

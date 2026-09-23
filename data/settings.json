@@ -1,0 +1,200 @@
+{
+  "id": "site",
+  "logo": "",
+  "banner": {
+    "images": [
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80",
+      "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1600&q=80",
+      "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1600&q=80"
+    ],
+    "titles": [
+      "Discover the Beauty of the World",
+      "Embark on a Journey of the Soul",
+      "Make Every Trip an Eternal Memory"
+    ],
+    "subtitles": [
+      "Curated popular routes — experience the magic of nature",
+      "Expert guide services with thoughtful itinerary planning",
+      "Handpicked signature routes — discover scenery like never before"
+    ]
+  },
+  "social": {
+    "weibo": "",
+    "douyin": "",
+    "xiaohongshu": ""
+  },
+  "contact": {
+    "qq": "21969856",
+    "email": "feiwu2879@gmail.com",
+    "phone": "+86 18807449678",
+    "mobile": "+86 18807449678",
+    "wechat": "18807449678",
+    "address": "Yicheng Park, Yongding District, Zhangjiajie City, China"
+  },
+  "siteName": "HuanYou Travel",
+  "aboutText": "HuanYou Travel is a professional travel agency specializing in domestic travel services across China. With an experienced team of guides and thoughtfully crafted itineraries, we are dedicated to providing every traveler with a safe, comfortable, and unforgettable journey.",
+  "copyright": "© 2026 HuanYou Travel. All rights reserved.",
+  "icpNumber": "湘ICP备20260001号",
+  "siteSlogan": "Every journey, a beautiful memory",
+  "description": "A premium travel booking platform offering curated mid-to-high-end travel services.",
+  "aboutContent": {
+    "intro": "HuanYou Travel is a comprehensive travel enterprise dedicated to premium travel services. We strive to provide every client with a unique, comfortable, and safe travel experience.\n\nOver more than a decade of growth, we have built an extensive service network covering destinations at home and abroad, with a team of over 200 professional guides and more than one million travelers served. Whether you prefer classic group tours or fully customized private journeys, we have the perfect solution for you.\n\nWe steadfastly uphold the philosophy of \"Customer First, Quality Foremost\" — rigorously selecting partners and meticulously designing every route to ensure each traveler enjoys a journey worth far more than the price paid.",
+    "stats": [
+      {
+        "label": "Travelers Served",
+        "value": "2000000"
+      },
+      {
+        "label": "Premium Routes",
+        "value": "500"
+      },
+      {
+        "label": "Partner Suppliers",
+        "value": "100"
+      },
+      {
+        "label": "Years of Heritage",
+        "value": "15"
+      }
+    ],
+    "story": "The idea for HuanYou Travel was born from a simple trip. In 2011, our founding team was traveling in Zhangjiajie and noticed how many visitors struggled with overwhelming travel information, making it hard to find a truly high-quality experience. And so, a vision took shape: create a travel service platform devoted to quality.\n\nFrom a handful of classic routes at the outset to hundreds of curated journeys across the country and beyond today, we have always held fast to the principle of \"Quality First, Service Above All.\" Over 15 years, we have served more than two million travelers and earned countless rave reviews and lasting trust.\n\nLooking ahead, HuanYou Travel will continue to innovate in the travel industry, introducing new services so that every traveler enjoys a worry-free, safe, and joyful journey.",
+    "vision": "",
+    "mission": "",
+    "features": [
+      {
+        "desc": "Meticulously designed by our expert team — every route is field-tested to ensure the best possible travel experience.",
+        "icon": "fa-map-marked-alt",
+        "title": "Curated Routes"
+      },
+      {
+        "desc": "Full-trip chauffeur service with professional drivers who know the roads — safe, comfortable, and worry-free.",
+        "icon": "fa-car",
+        "title": "Private Transfers"
+      },
+      {
+        "desc": "All our guides hold national certification and bring rich expertise, sharing the story behind every landscape.",
+        "icon": "fa-user-tie",
+        "title": "Licensed Guides"
+      },
+      {
+        "desc": "Handpicked local delicacies — savor the flavors of each destination throughout your journey.",
+        "icon": "fa-utensils",
+        "title": "Local Cuisine"
+      },
+      {
+        "desc": "Partner hotels are top local brands in convenient locations with excellent amenities — guaranteed rest quality.",
+        "icon": "fa-hotel",
+        "title": "Premium Accommodation"
+      },
+      {
+        "desc": "Comprehensive travel accident insurance on every trip — safeguarding your journey from start to finish.",
+        "icon": "fa-shield-virus",
+        "title": "Full Insurance Coverage"
+      }
+    ],
+    "subtitle": "15 years of premium travel expertise — devoted to serving every traveler"
+  },
+  "announcement": "🎉 New route launch! Chongqing + Zhangjiajie 7-day in-depth tour — limited-time offer, book now for 15% off!",
+  "testimonials": [
+    {
+      "from": "Chongqing & Zhangjiajie 7-Day Tour",
+      "name": "Ms. Wang",
+      "text": "My first time visiting Chongqing and Zhangjiajie — I booked the 7-day tour and our guide Xiao Li was incredibly professional with detailed commentary. The itinerary was well-paced with no rushing, and we had an amazing time! Definitely choosing HuanYou again next time!",
+      "avatar": "https://randomuser.me/api/portraits/women/44.jpg",
+      "rating": 5
+    },
+    {
+      "from": "Sichuan Jiuzhaigou 5-Day Tour",
+      "name": "Mr. Zhang",
+      "text": "The Jiuzhaigou trip was absolutely breathtaking! Visiting in autumn feels like a fairyland — the lake colors are mesmerizing. The agency arranged everything thoughtfully and the accommodation was great. Highly recommended!",
+      "avatar": "https://randomuser.me/api/portraits/men/32.jpg",
+      "rating": 5
+    },
+    {
+      "from": "Beijing & Yunnan 10-Day Tour",
+      "name": "Ms. Li",
+      "text": "Took my child on the 10-day Beijing and Yunnan tour — the pace was relaxed and never tiring, and my kid had a blast. The Great Wall, Forbidden City, and the ancient towns of Dali and Lijiang were the highlights. Our guide patiently answered every question. A truly trustworthy agency!",
+      "avatar": "https://randomuser.me/api/portraits/women/68.jpg",
+      "rating": 5
+    }
+  ],
+  "contactContent": {
+    "cards": [
+      {
+        "sub": "Weekdays 9:00–18:00",
+        "icon": "fa-phone-alt",
+        "title": "Phone",
+        "value": "18807449678"
+      },
+      {
+        "sub": "Reply within 24 hours",
+        "icon": "fa-envelope",
+        "title": "Email",
+        "value": "feiwu2879@gmail.com"
+      },
+      {
+        "sub": "Headquarters",
+        "icon": "fa-map-marker-alt",
+        "title": "Address",
+        "value": "Yicheng Park, Yongding District, Zhangjiajie City, China"
+      },
+      {
+        "sub": "Including holidays",
+        "icon": "fa-clock",
+        "title": "Business Hours",
+        "value": "Mon – Sun, 09:00 – 21:00 (open year-round)"
+      }
+    ],
+    "hours": "Mon – Sun, 09:00 – 21:00 (open year-round)",
+    "subtitle": "Have a question or suggestion? We'd love to hear from you — reach out anytime."
+  },
+  "featuredGuides": [
+    "G001",
+    "G002",
+    "G003"
+  ],
+  "featuredRoutes": [
+    "R001",
+    "R002",
+    "R003",
+    "R006"
+  ],
+  "featuredDestinations": [
+    "D001",
+    "D002",
+    "D003",
+    "D004"
+  ],
+  "navItems": [
+    {
+      "href": "index.html",
+      "label": "Home",
+      "icon": "fa-home"
+    },
+    {
+      "href": "routes.html",
+      "label": "Tours",
+      "icon": "fa-route"
+    },
+    {
+      "href": "destinations.html",
+      "label": "Destinations",
+      "icon": "fa-map-marker-alt"
+    },
+    {
+      "href": "guides.html",
+      "label": "Travel Guides",
+      "icon": "fa-book-open"
+    },
+    {
+      "href": "about.html",
+      "label": "About Us",
+      "icon": "fa-info-circle"
+    },
+    {
+      "href": "contact.html",
+      "label": "Contact Us",
+      "icon": "fa-envelope"
+    }
+  ]
+}

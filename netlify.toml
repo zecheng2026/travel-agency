@@ -1,0 +1,105 @@
+[build]
+  command   = ""
+  publish   = "."
+  functions = "netlify/functions"
+
+# 列表页 SSR（/routes /routes.html → Function）
+[[redirects]]
+  from     = "/routes"
+  to       = "/.netlify/functions/ssr"
+  status   = 200
+  force    = true
+
+[[redirects]]
+  from     = "/routes.html"
+  to       = "/.netlify/functions/ssr"
+  status   = 200
+  force    = true
+
+[[redirects]]
+  from     = "/destinations"
+  to       = "/.netlify/functions/ssr"
+  status   = 200
+  force    = true
+
+[[redirects]]
+  from     = "/destinations.html"
+  to       = "/.netlify/functions/ssr"
+  status   = 200
+  force    = true
+
+[[redirects]]
+  from     = "/guides"
+  to       = "/.netlify/functions/ssr"
+  status   = 200
+  force    = true
+
+[[redirects]]
+  from     = "/guides.html"
+  to       = "/.netlify/functions/ssr"
+  status   = 200
+  force    = true
+
+# 详情页 SSR（新格式）
+[[redirects]]
+  from     = "/destination/*"
+  to       = "/.netlify/functions/ssr"
+  status   = 200
+  force    = true
+
+[[redirects]]
+  from     = "/guide/*"
+  to       = "/.netlify/functions/ssr"
+  status   = 200
+  force    = true
+
+[[redirects]]
+  from     = "/route/*"
+  to       = "/.netlify/functions/ssr"
+  status   = 200
+  force    = true
+
+# 详情页 SSR（旧格式）
+[[redirects]]
+  from     = "/dest-detail.html"
+  to       = "/.netlify/functions/ssr"
+  status   = 200
+  force    = true
+
+[[redirects]]
+  from     = "/guide-detail.html"
+  to       = "/.netlify/functions/ssr"
+  status   = 200
+  force    = true
+
+[[redirects]]
+  from     = "/route-detail.html"
+  to       = "/.netlify/functions/ssr"
+  status   = 200
+  force    = true
+
+# 首页 SSR（必须在 /* fallback 之前，否则会被 SPA fallback 吞掉）
+[[redirects]]
+  from     = "/"
+  to       = "/.netlify/functions/ssr"
+  status   = 200
+  force    = true
+
+# SEO: sitemap & robots
+[[redirects]]
+  from     = "/sitemap.xml"
+  to       = "/.netlify/functions/ssr"
+  status   = 200
+  force    = true
+
+[[redirects]]
+  from     = "/robots.txt"
+  to       = "/.netlify/functions/ssr"
+  status   = 200
+  force    = true
+
+# SPA fallback
+[[redirects]]
+  from     = "/*"
+  to       = "/index.html"
+  status   = 200

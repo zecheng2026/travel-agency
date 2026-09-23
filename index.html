@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HuanYou Travel - Making Every Journey a Beautiful Memory</title>
+<meta name="description" content="Professional travel booking platform offering guided tours and self-guided trips to top destinations including Yunnan, Sichuan, Guangxi, Tibet and more.">
+<meta property="og:title" content="HuanYou Travel - Making Every Journey a Beautiful Memory">
+<meta property="og:description" content="Handpicked popular tours with expert guide services — making every journey a beautiful memory">
+  <meta property="og:type" content="website">
+  
+  <!-- Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header" id="main-header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fas fa-paper-plane"></i></div>
+<span>HuanYou Travel</span>
+      </a>
+      
+      <nav class="nav-menu" id="nav-menu"></nav>
+      
+      <div class="nav-actions">
+        <a href="tel:400-888-6789" class="header-phone">
+          <i class="fas fa-phone-alt"></i>
+          400-888-6789
+        </a>
+<div class="lang-dropdown" id="lang-dropdown">
+  <button type="button" class="lang-btn" aria-label="Select language" aria-expanded="false">
+    <span>Select Language</span>
+    <i class="fas fa-chevron-down"></i>
+  </button>
+  <ul class="lang-menu" role="menu">
+    <li role="menuitem" data-lang="en" class="active">English</li>
+    <li role="menuitem" data-lang="zh-CN">中文</li>
+    <li role="menuitem" data-lang="ja">日本語</li>
+    <li role="menuitem" data-lang="es">Español</li>
+    <li role="menuitem" data-lang="ar">العربية</li>
+  </ul>
+</div>
+<div id="google_translate_element" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;"></div>
+      </div>
+      
+<button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Nav -->
+  <nav class="mobile-nav" id="mobile-nav">
+<a href="index.html" class="nav-link active">Home</a>
+<a href="/routes" class="nav-link">Tours</a>
+<a href="/destinations" class="nav-link">Destinations</a>
+<a href="/guides" class="nav-link">Travel Guides</a>
+<a href="about.html" class="nav-link">About Us</a>
+<a href="contact.html" class="nav-link">Contact</a>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero-section">
+    <div class="hero-carousel" id="hero-carousel">
+      <!-- Slides will be populated by JS -->
+      <div class="hero-slide active">
+<img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80" class="hero-slide-bg" alt="Journey">
+        <div class="hero-overlay"></div>
+      </div>
+      <div class="hero-slide">
+<img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1600&q=80" class="hero-slide-bg" alt="Scenery">
+        <div class="hero-overlay"></div>
+      </div>
+      <div class="hero-slide">
+<img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1600&q=80" class="hero-slide-bg" alt="Travel">
+        <div class="hero-overlay"></div>
+      </div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-badge">
+        <i class="fas fa-globe-asia"></i>
+30+ Popular Destinations
+      </div>
+<h1 class="hero-title">Discover the Beauty of the World</h1>
+<p class="hero-subtitle">Handpicked popular tours, experience the charm of nature<br>Expert guide services, thoughtful itinerary planning</p>
+      <div class="hero-actions">
+        <a href="/routes" class="btn btn-accent btn-lg">
+<i class="fas fa-compass"></i> Browse Tours
+        </a>
+        <a href="contact.html" class="btn btn-white btn-lg">
+<i class="fas fa-headset"></i> Get a Quote
+        </a>
+      </div>
+    </div>
+
+    <!-- Hero search -->
+    <div class="container">
+      <div class="hero-search">
+        <div class="hero-search-form">
+          <div class="form-group">
+<label>Destination</label>
+            <select class="form-control" id="hero-destination">
+<option value="">All Destinations</option>
+<option value="Yunnan">Yunnan</option>
+<option value="Sichuan">Sichuan</option>
+<option value="Guangxi">Guangxi</option>
+<option value="Tibet">Tibet</option>
+<option value="Qinghai">Qinghai</option>
+<option value="Guizhou">Guizhou</option>
+<option value="Hainan">Hainan</option>
+            </select>
+          </div>
+          <div class="form-group">
+<label>Duration</label>
+            <select class="form-control" id="hero-days">
+<option value="">All Durations</option>
+<option value="3">1-3 Days</option>
+<option value="5">4-5 Days</option>
+<option value="7">6-7 Days</option>
+<option value="10">7+ Days</option>
+            </select>
+          </div>
+          <div class="form-group">
+<label>Budget</label>
+            <select class="form-control" id="hero-budget">
+<option value="">All Budgets</option>
+<option value="2000">Under ¥2,000</option>
+              <option value="4000">¥2,000 - ¥4,000</option>
+              <option value="6000">¥4,000 - ¥6,000</option>
+<option value="6001">¥6,000+</option>
+            </select>
+          </div>
+          <button class="btn btn-primary" id="hero-search-btn">
+<i class="fas fa-search"></i> Search Tours
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Indicators -->
+    <div class="hero-indicators">
+      <button class="hero-indicator active" data-index="0"></button>
+      <button class="hero-indicator" data-index="1"></button>
+      <button class="hero-indicator" data-index="2"></button>
+    </div>
+
+    <!-- Arrows -->
+    <button class="hero-arrow hero-arrow-left" id="hero-prev"><i class="fas fa-chevron-left"></i></button>
+    <button class="hero-arrow hero-arrow-right" id="hero-next"><i class="fas fa-chevron-right"></i></button>
+  </section>
+
+  <!-- Popular Destinations -->
+  <section class="section" style="background:var(--color-bg);" id="popular-destinations">
+    <div class="container">
+      <div class="section-header">
+<h2 class="section-title">Popular Destinations</h2>
+<p class="section-subtitle">Explore the most beautiful places in China — every trip is full of surprises</p>
+      </div>
+      <div class="destinations-grid" id="destinations-container">
+        <div class="skeleton" style="height:300px;border-radius:var(--radius-xl);"></div>
+        <div class="skeleton" style="height:300px;border-radius:var(--radius-xl);"></div>
+        <div class="skeleton" style="height:300px;border-radius:var(--radius-xl);"></div>
+        <div class="skeleton" style="height:300px;border-radius:var(--radius-xl);"></div>
+      </div>
+      <div class="text-center" style="margin-top:var(--space-2xl);">
+        <a href="/destinations" class="btn btn-outline btn-lg">
+View All Destinations <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Popular Tours -->
+  <section class="section" id="popular-routes">
+    <div class="container">
+      <div class="section-header">
+<h2 class="section-title">Popular Tours</h2>
+<p class="section-subtitle">Handpicked destinations — discover extraordinary scenery</p>
+      </div>
+      <div class="routes-grid" id="routes-container">
+<!-- Dynamic loading -->
+        <div class="skeleton" style="height:380px;border-radius:var(--radius-lg);"></div>
+        <div class="skeleton" style="height:380px;border-radius:var(--radius-lg);"></div>
+        <div class="skeleton" style="height:380px;border-radius:var(--radius-lg);"></div>
+      </div>
+      <div class="text-center" style="margin-top:var(--space-2xl);">
+        <a href="/routes" class="btn btn-outline btn-lg">
+View All Tours <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Travel Guides -->
+  <section class="section" id="travel-guides">
+    <div class="container">
+      <div class="section-header">
+<h2 class="section-title">Travel Guides</h2>
+<p class="section-subtitle">Practical travel tips for a smooth and enjoyable journey</p>
+      </div>
+      <div class="guides-grid" id="guides-container">
+        <div class="skeleton" style="height:340px;border-radius:var(--radius-lg);"></div>
+        <div class="skeleton" style="height:340px;border-radius:var(--radius-lg);"></div>
+        <div class="skeleton" style="height:340px;border-radius:var(--radius-lg);"></div>
+      </div>
+      <div class="text-center" style="margin-top:var(--space-2xl);">
+        <a href="/guides" class="btn btn-outline btn-lg">
+More Travel Guides <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Counter Section -->
+  <section class="counter-section">
+    <div class="container">
+      <div class="counter-grid">
+        <div class="counter-item">
+          <div class="counter-number" data-target="200">0</div>
+<div class="counter-label">Curated Tours</div>
+        </div>
+        <div class="counter-item">
+          <div class="counter-number" data-target="50">0</div>
+<div class="counter-label">Featured Destinations</div>
+        </div>
+        <div class="counter-item">
+          <div class="counter-number" data-target="50000">0</div>
+<div class="counter-label">Happy Travelers</div>
+        </div>
+        <div class="counter-item">
+          <div class="counter-number" data-target="98">0</div>
+<div class="counter-label">Satisfaction %</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section section-sm" id="testimonials">
+    <div class="container">
+      <div class="section-header">
+<h2 class="section-title">Testimonials</h2>
+<p class="section-subtitle">Hear what our travelers have to say</p>
+      </div>
+      <div class="grid grid-3" id="testimonials-container"></div>
+    </div>
+  </section>
+
+  <!-- About Preview -->
+  <section class="section section-sm" style="background:var(--color-bg);">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-image reveal">
+<img src="https://images.unsplash.com/photo-1488085061387-422e29b40080?w=800&q=80" alt="HuanYou Travel">
+        </div>
+        <div class="about-content reveal reveal-delay-1">
+<h2 class="heading-lg" style="margin-bottom:var(--space-lg);">About HuanYou Travel</h2>
+<p id="about-preview-text" style="color:var(--color-text-secondary);line-height:var(--line-height-relaxed);margin-bottom:var(--space-lg);">HuanYou Travel is a comprehensive travel enterprise dedicated to premium travel services. We are committed to providing every traveler with a unique, comfortable, and safe travel experience.</p>
+          <div class="about-features">
+            <div class="about-feature">
+              <div class="about-feature-icon"><i class="fas fa-shield-alt"></i></div>
+              <div>
+<div class="about-feature-title">Quality Guaranteed</div>
+<div class="about-feature-text">Carefully selected suppliers with strict itinerary control</div>
+              </div>
+            </div>
+            <div class="about-feature">
+              <div class="about-feature-icon"><i class="fas fa-headset"></i></div>
+              <div>
+<div class="about-feature-title">Dedicated Support</div>
+<div class="about-feature-text">24/7 online, real-time response to your needs</div>
+              </div>
+            </div>
+            <div class="about-feature">
+              <div class="about-feature-icon"><i class="fas fa-hand-holding-heart"></i></div>
+              <div>
+<div class="about-feature-title">Thoughtful Service</div>
+<div class="about-feature-text">Attention to detail for a worry-free journey</div>
+              </div>
+            </div>
+            <div class="about-feature">
+              <div class="about-feature-icon"><i class="fas fa-tags"></i></div>
+              <div>
+<div class="about-feature-title">Great Value</div>
+<div class="about-feature-text">No middlemen — better quality at better prices</div>
+              </div>
+            </div>
+          </div>
+          <a href="about.html" class="btn btn-primary" style="margin-top:var(--space-xl);">
+Learn More <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Announcement Banner -->
+  <div style="background:var(--color-accent-light);padding:var(--space-md) 0;">
+    <div class="container">
+      <div class="flex-between" style="flex-wrap:wrap;gap:var(--space-md);">
+        <div style="display:flex;align-items:center;gap:var(--space-md);">
+          <i class="fas fa-bullhorn" style="color:var(--color-accent);font-size:var(--font-size-xl);"></i>
+<span id="announcement-text" style="color:var(--color-text);">🎉 New tour launched! Yunnan Dali & Lijiang 6-Day In-Depth Tour — limited-time offer with 15% off. Book now!</span>
+        </div>
+<a href="/routes" class="btn btn-accent btn-sm">View Now</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer" id="main-footer"></footer>
+
+  <!-- Floating Action Buttons -->
+  <div class="fab-container">
+<button class="fab fab-accent" id="fab-consult" title="Online Consultation">
+      <i class="fas fa-comment-dots"></i>
+    </button>
+<button class="scroll-top" id="scroll-top-btn" title="Back to Top">
+      <i class="fas fa-chevron-up"></i>
+    </button>
+  </div>
+
+  <!-- Scripts -->
+  <script src="supabase-config.js"></script>
+    <script src="js/cloud.js"></script>
+    <script src="js/app.js"></script>
+  <script src="js/data.js"></script>
+  <script>
+// homepage page-specific logic
+    document.addEventListener('DOMContentLoaded', async () => {
+// Site config (admin "Homepage Settings" takes priority, falls back to settings.json defaults)
+      const settings = await Settings.ensureSeeded();
+
+// Load featured routes (configurable in admin)
+      const fRoutes = settings?.featuredRoutes;
+      await RouteRenderer.renderList('routes-container',
+        (fRoutes && fRoutes.length) ? { ids: fRoutes, limit: 4 } : { featured: true, limit: 4 });
+
+// Load featured destinations
+      const fDests = settings?.featuredDestinations;
+      await DestinationRenderer.renderList('destinations-container',
+        (fDests && fDests.length) ? { ids: fDests, limit: 4 } : { featured: true, limit: 4 });
+
+// Load travel guides
+      const fGuides = settings?.featuredGuides;
+      await GuideRenderer.renderList('guides-container',
+        (fGuides && fGuides.length) ? { ids: fGuides, limit: 3 } : { featured: true, limit: 3 });
+
+// Customer testimonials (configurable in admin)
+      const testimonials = settings?.testimonials;
+      const tContainer = document.getElementById('testimonials-container');
+      if (tContainer && Array.isArray(testimonials) && testimonials.length) {
+        const stars = n => Array.from({ length: 5 }, (_, i) =>
+          `<i class="fas fa-star${i < (n || 5) ? '' : '-o'}"></i>`).join('');
+        tContainer.innerHTML = testimonials.map(t => `
+          <div class="testimonial-card">
+            <p class="testimonial-text">${t.text || ''}</p>
+            <div class="testimonial-author">
+${t.avatar ? `<img src="${t.avatar}" alt="User Avatar" class="testimonial-avatar">` : '<div class="testimonial-avatar" style="display:flex;align-items:center;justify-content:center;background:var(--color-primary);color:#fff;">' + (t.name || 'T').charAt(0) + '</div>'}
+              <div>
+                <div class="testimonial-name">${t.name || ''}</div>
+                <div class="testimonial-info">${t.from || ''}</div>
+                <div class="testimonial-rating">${stars(t.rating)}</div>
+              </div>
+            </div>
+          </div>
+        `).join('');
+      }
+
+// About preview (configurable in admin)
+      if (settings?.aboutText) {
+        const aboutEl = document.getElementById('about-preview-text');
+        if (aboutEl) aboutEl.textContent = settings.aboutText;
+      }
+      
+// Counter animation
+      const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const counters = entry.target.querySelectorAll('.counter-number');
+            counters.forEach(counter => {
+              const target = parseInt(counter.dataset.target);
+              const duration = 2000;
+              const step = target / (duration / 16);
+              let current = 0;
+              const timer = setInterval(() => {
+                current += step;
+                if (current >= target) {
+                  counter.textContent = target.toLocaleString();
+                  clearInterval(timer);
+                } else {
+                  counter.textContent = Math.floor(current).toLocaleString();
+                }
+              }, 16);
+            });
+            counterObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+      
+      const counterSection = document.querySelector('.counter-section');
+      if (counterSection) counterObserver.observe(counterSection);
+      
+// Hero search
+      const searchBtn = document.getElementById('hero-search-btn');
+      if (searchBtn) {
+        searchBtn.addEventListener('click', () => {
+          const dest = document.getElementById('hero-destination').value;
+          const days = document.getElementById('hero-days').value;
+          const budget = document.getElementById('hero-budget').value;
+          const params = new URLSearchParams();
+          if (dest) params.set('destination', dest);
+          if (days) params.set('days', days);
+          if (budget) params.set('budget', budget);
+          window.location.href = '/routes?' + params.toString();
+        });
+      }
+
+// Announcement
+      if (settings?.announcement) {
+        const announcementEl = document.getElementById('announcement-text');
+        if (announcementEl) announcementEl.textContent = settings.announcement;
+      }
+
+// Floating consult button
+      const consultBtn = document.getElementById('fab-consult');
+      if (consultBtn) {
+        consultBtn.addEventListener('click', () => {
+          window.location.href = 'contact.html';
+        });
+      }
+    });
+  </script>
+</body>
+</html>

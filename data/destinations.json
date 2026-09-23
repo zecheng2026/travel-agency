@@ -1,0 +1,298 @@
+[
+  {
+    "id": "D001",
+    "name": "Lijiang",
+    "region": "Yunnan",
+    "summary": "An ancient city beneath snow-capped peaks — where time slows and softness finds you",
+    "cover": "https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b?w=800&q=80",
+    "tags": [
+      "Ancient Town",
+      "Snow Mountain",
+      "Romance"
+    ],
+    "highlights": [
+      {
+        "name": "Lijiang Old Town",
+        "desc": "A UNESCO World Heritage site and the cultural heart of the Naxi people, with cobblestone lanes, arched bridges, and flowing streams."
+      },
+      {
+        "name": "Yulong Snow Mountain",
+        "desc": "The southernmost snow peak in the Northern Hemisphere, offering breathtaking glacier views."
+      },
+      {
+        "name": "Shuhe Ancient Town",
+        "desc": "A quieter alternative to Dayan Old Town — a favorite among artists and wanderers."
+      },
+      {
+        "name": "Lashi Sea",
+        "desc": "A highland wetland nature reserve, perfect for horseback riding and boat rides."
+      }
+    ],
+    "content": "Lijiang lies in northwestern Yunnan Province, a historic key stop along the ancient Tea Horse Road. Here you'll find a perfectly preserved Naxi ancient town, the sacred grandeur of Yulong Snow Mountain, and the serene charm of Shuhe Ancient Town.\n\nLijiang is languid at dawn, languid in the afternoon, and languid at night. Find a traditional inn, soak up the sunshine, cuddle a cat, and gaze at the snow peaks — let the hours drift by.\n\nRecommended: Browse the night market at Sifang Square, watch the snow mountain reflected in Black Dragon Pool, ride horses at Lashi Sea, and while away the hours in Shuhe Ancient Town.",
+    "routeCount": 12,
+    "guideCount": 8,
+    "popularity": "★★★★★",
+    "status": "published",
+    "featured": true,
+    "createdAt": "2025-09-15"
+  },
+  {
+    "id": "D002",
+    "name": "Dali",
+    "region": "Yunnan",
+    "summary": "Land of wind, flowers, snow and moon — poetry and the horizon set between Cangshan and Erhai",
+    "cover": "https://images.unsplash.com/photo-1583292650898-7d22cd27ca6f?w=800&q=80",
+    "tags": [
+      "Ancient Town",
+      "Erhai Lake",
+      "Artistic"
+    ],
+    "highlights": [
+      {
+        "name": "Dali Old Town",
+        "desc": "The former capital of the Nanzhao Kingdom — today a vibrant gathering place for artists and free spirits."
+      },
+      {
+        "name": "Erhai Lake",
+        "desc": "Yunnan's second-largest highland lake, ideal for scenic cycling loops around its shores."
+      },
+      {
+        "name": "Cangshan Mountain",
+        "desc": "Take the cable car to the summit for a sweeping panorama of Erhai Lake below."
+      },
+      {
+        "name": "Xizhou Ancient Town",
+        "desc": "The best-preserved Bai ethnic town in the region."
+      }
+    ],
+    "content": "Dali sits in central Yunnan, the capital of the Bai Autonomous Prefecture. Wind, flowers, snow, moon — these four wonders are the very essence of Dali: the wind at Xiaguan Pass, the blossoms at Shangguan, the snow on Cangshan, and the moon over Erhai Lake.\n\nDali Old Town dates back over 600 years, preserving a remarkable collection of Ming and Qing dynasty architecture. Renting an electric bike for a full loop of Erhai Lake is the very best way to experience Dali.",
+    "routeCount": 9,
+    "guideCount": 6,
+    "popularity": "★★★★★",
+    "status": "published",
+    "featured": true,
+    "createdAt": "2025-09-15"
+  },
+  {
+    "id": "D003",
+    "name": "Jiuzhaigou",
+    "region": "Sichuan",
+    "summary": "An earthly paradise on earth — where water blooms in impossible colors",
+    "cover": "https://images.unsplash.com/photo-1565599837634-3319b9d1c40a?w=800&q=80",
+    "tags": [
+      "Mountains and Water",
+      "World Heritage",
+      "Autumn Foliage"
+    ],
+    "highlights": [
+      {
+        "name": "Wuhua Hai (Five-Flower Lake)",
+        "desc": "Jiuzhaigou's most stunning lake — its colors shift like a fairy tale come to life."
+      },
+      {
+        "name": "Nuorilang Waterfall",
+        "desc": "One of China's widest high-altitude waterfalls."
+      },
+      {
+        "name": "Changhai (Long Lake)",
+        "desc": "The largest and deepest lake in the entire Jiuzhaigou valley."
+      },
+      {
+        "name": "Tree-Zheng Lake Group",
+        "desc": "Over 40 interconnected highland lakes strung together in a chain."
+      }
+    ],
+    "content": "Jiuzhaigou is located in the Aba Tibetan and Qiang Autonomous Prefecture of Sichuan Province. Its name comes from the nine Tibetan villages scattered throughout the valley, which was inscribed on the UNESCO World Natural Heritage List in 1992.\n\nWithin the valley are 108 highland lakes (called \"haizi\") whose waters display astonishing shades of turquoise and emerald — earning this place its reputation as an earthly paradise and a fairy-tale world.",
+    "routeCount": 8,
+    "guideCount": 7,
+    "popularity": "★★★★★",
+    "status": "published",
+    "featured": true,
+    "createdAt": "2025-09-16"
+  },
+  {
+    "id": "D004",
+    "name": "Guilin",
+    "region": "Guangxi",
+    "summary": "The landscape of Guilin surpasses all under heaven — a Li River painting come to life",
+    "cover": "https://images.unsplash.com/photo-1537531383496-f4749b85ceb3?w=800&q=80",
+    "tags": [
+      "Mountains and Water",
+      "Li River",
+      "Bamboo Raft"
+    ],
+    "highlights": [
+      {
+        "name": "Li River",
+        "desc": "Glide along on a bamboo raft past the very scene printed on the 20-yuan banknote."
+      },
+      {
+        "name": "Yangshuo West Street",
+        "desc": "A lively blend of Chinese and Western culture — a street with true exotic flair."
+      },
+      {
+        "name": "Elephant Trunk Hill",
+        "desc": "Guilin's iconic landmark — an elephant drinking from the river, carved by nature."
+      },
+      {
+        "name": "Longsheng Rice Terraces",
+        "desc": "Magnificent terraced fields cascading down the mountainside."
+      }
+    ],
+    "content": "Guilin lies in northeast Guangxi, world-renowned for the famous saying \"The scenery of Guilin surpasses all under heaven.\" Its karst landscape has sculpted a world of towering peaks and winding rivers.\n\nDrifting downstream on a bamboo raft along the Li River, the green mountains on both banks mirrored in the water — you'll feel as though you are traveling inside a painting.",
+    "routeCount": 11,
+    "guideCount": 5,
+    "popularity": "★★★★★",
+    "status": "published",
+    "featured": true,
+    "createdAt": "2025-09-17"
+  },
+  {
+    "id": "D005",
+    "name": "Lhasa, Tibet",
+    "region": "Tibet",
+    "summary": "The closest place to the sky — a sacred city on the snow plateau",
+    "cover": "https://images.unsplash.com/photo-1589308454676-22a0263a93f0?w=800&q=80",
+    "tags": [
+      "Pilgrimage",
+      "Highland",
+      "Culture"
+    ],
+    "highlights": [
+      {
+        "name": "Potala Palace",
+        "desc": "A palace perched on the world's roof — the most sacred site in Tibetan Buddhism."
+      },
+      {
+        "name": "Jokhang Temple",
+        "desc": "The central spiritual destination for Tibetan Buddhist pilgrims."
+      },
+      {
+        "name": "Barkhor Street",
+        "desc": "Lhasa's oldest and most atmospheric commercial street."
+      },
+      {
+        "name": "Namtso Lake",
+        "desc": "Tibet's second-largest lake — a luminous blue sacred lake."
+      }
+    ],
+    "content": "Lhasa is the capital of the Tibet Autonomous Prefecture, sitting at 3,650 meters above sea level and known as the \"City of Sunshine.\" The Potala Palace, Jokhang Temple, and Norbulingka together form Lhasa's three great landmarks.\n\nThis is a land closest to the sky: snow-capped mountains, sacred lakes, ancient temples, white stupas, and Tibetan villagers — together they compose a picture of profound mystery.",
+    "routeCount": 7,
+    "guideCount": 6,
+    "popularity": "★★★★★",
+    "status": "published",
+    "featured": true,
+    "createdAt": "2025-09-18"
+  },
+  {
+    "id": "D006",
+    "name": "Qinghai Lake",
+    "region": "Qinghai",
+    "summary": "Jewel of the highland — intoxicating rapeseed blooms in July",
+    "cover": "https://images.unsplash.com/photo-1503581277749-0acdf77c80e7?w=800&q=80",
+    "tags": [
+      "Lake",
+      "Flower Sea",
+      "Highland"
+    ],
+    "highlights": [
+      {
+        "name": "Qinghai Lake",
+        "desc": "China's largest inland saltwater lake."
+      },
+      {
+        "name": "Chaka Salt Lake",
+        "desc": "The Mirror of the Sky — reflections so perfect they seem to blur the line between reality and illusion."
+      },
+      {
+        "name": "Bird Island",
+        "desc": "A major breeding ground for migratory birds."
+      },
+      {
+        "name": "Erlangjian",
+        "desc": "The most scenic stretch of the lakeshore — once a secret military site."
+      }
+    ],
+    "content": "Qinghai Lake sits on the northeastern edge of the Qinghai-Tibet Plateau — China's largest saltwater lake. Its vast, boundless waters glow a blue that steals your breath away.\n\nEvery July and August, tens of thousands of acres of rapeseed flowers along the shore burst into golden bloom — golden flowers and blue lake water create a scene of breathtaking harmony.",
+    "routeCount": 6,
+    "guideCount": 4,
+    "popularity": "★★★★",
+    "status": "published",
+    "featured": true,
+    "createdAt": "2025-09-19"
+  },
+  {
+    "id": "D007",
+    "name": "Zhangjiajie",
+    "region": "Hunan",
+    "summary": "Where Avatar found its floating mountains — a real-life Pandora",
+    "cover": "https://images.unsplash.com/photo-1559628233-100c798642d4?w=800&q=80",
+    "tags": [
+      "Eccentric Peaks",
+      "Glass Skywalk",
+      "World Heritage"
+    ],
+    "highlights": [
+      {
+        "name": "Tianmen Mountain",
+        "desc": "999 steps to heaven, plus the famous glass skywalk."
+      },
+      {
+        "name": "Zhangjiajie National Forest Park",
+        "desc": "The real-life inspiration for the floating mountains of Avatar."
+      },
+      {
+        "name": "Yellow Dragon Cave",
+        "desc": "One of the largest karst cave systems in Asia."
+      },
+      {
+        "name": "Fenghuang Ancient Town",
+        "desc": "The riverside town made immortal in Shen Congwen's classic novel."
+      }
+    ],
+    "content": "Zhangjiajie lies in northwestern Hunan Province, celebrated for its one-of-a-kind quartz sandstone pillar-forest canyon landscape. The floating mountains in the film Avatar were directly inspired by the peaks of Zhangjiajie.\n\nHere you'll find the world's longest passenger cable car, the most thrilling glass skywalk, and the most spectacular canyon scenery on earth.",
+    "routeCount": 8,
+    "guideCount": 5,
+    "popularity": "★★★★",
+    "status": "published",
+    "featured": true,
+    "createdAt": "2025-09-20"
+  },
+  {
+    "id": "D008",
+    "name": "Sanya",
+    "region": "Hainan",
+    "summary": "The Hawaii of the East — a tropical paradise of coconut breezes and azure seas",
+    "cover": "https://images.unsplash.com/photo-1518391846015-55a9cc003b25?w=800&q=80",
+    "tags": [
+      "Island",
+      "Resort",
+      "Tropical"
+    ],
+    "highlights": [
+      {
+        "name": "Yalong Bay",
+        "desc": "One of China's most beautiful bays."
+      },
+      {
+        "name": "Wuzhizhou Island",
+        "desc": "China's premier diving destination."
+      },
+      {
+        "name": "Tianya Haijiao",
+        "desc": "The classic must-see landmark — the 'end of the earth, the edge of the sea'."
+      },
+      {
+        "name": "Nanshan Cultural Tourism Zone",
+        "desc": "Home to a 108-meter-tall Guanyin statue standing tall above the sea."
+      }
+    ],
+    "content": "Sanya occupies the southernmost tip of Hainan Island — China's most beloved tropical beach resort destination. Here you'll find azure seas, immaculate white-sand beaches, and graceful rows of coconut palms.\n\nWhether it is a honeymoon, a family vacation, or simply a chance to unwind, Sanya is always the perfect choice.",
+    "routeCount": 10,
+    "guideCount": 5,
+    "popularity": "★★★★★",
+    "status": "published",
+    "featured": true,
+    "createdAt": "2025-09-21"
+  }
+]

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Now - HuanYou Travel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+  <header class="header" id="main-header">
+    <div class="header-inner">
+<a href="index.html" class="logo"><div class="logo-icon"><i class="fas fa-paper-plane"></i></div><span>HuanYou Travel</span></a>
+      <nav class="nav-menu" id="nav-menu"></nav>
+      <div class="nav-actions">
+        <a href="tel:400-888-6789" class="header-phone"><i class="fas fa-phone-alt"></i> 400-888-6789</a>
+<div class="lang-dropdown" id="lang-dropdown">
+  <button type="button" class="lang-btn" aria-label="Select language" aria-expanded="false">
+    <span>Select Language</span>
+    <i class="fas fa-chevron-down"></i>
+  </button>
+  <ul class="lang-menu" role="menu">
+    <li role="menuitem" data-lang="en" class="active">English</li>
+    <li role="menuitem" data-lang="zh-CN">中文</li>
+    <li role="menuitem" data-lang="ja">日本語</li>
+    <li role="menuitem" data-lang="es">Español</li>
+    <li role="menuitem" data-lang="ar">العربية</li>
+  </ul>
+</div>
+<div id="google_translate_element" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;"></div>
+      </div>
+<button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+  <nav class="mobile-nav" id="mobile-nav"></nav>
+  <div class="page-header">
+    <div class="container">
+<h1 class="page-title">Book Now</h1>
+<p class="page-subtitle">Fill in your details — your perfect journey begins here</p>
+      <div class="breadcrumb">
+<a href="index.html">Home</a>
+        <span class="breadcrumb-sep">/</span>
+<a href="/routes">Tours</a> <span class="breadcrumb-sep">/</span> <span class="current">Book Now</span>
+      </div>
+    </div>
+  </div>
+<main class="section" id="booking-main">
+    <div class="container">
+      <div class="booking-page">
+        <div class="booking-form-wrapper">
+          <div class="booking-form-header">
+<h2>Booking Information</h2>
+<p>Please fill in the booking details — our team will confirm with you within 30 minutes.</p>
+          </div>
+          <form class="booking-form" id="booking-form">
+            <div class="form-row">
+              <div class="form-group">
+<label class="form-label">Tour Name</label>
+<input type="text" class="form-control" name="route" id="booking-route" value="" readonly>
+              </div>
+              <div class="form-group">
+<label class="form-label">Departure Date <span class="required">*</span></label>
+                <input type="date" class="form-control" name="date" required id="booking-date">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+<label class="form-label">Contact Name <span class="required">*</span></label>
+<input type="text" class="form-control" name="name" required placeholder="Enter contact name">
+              </div>
+              <div class="form-group">
+<label class="form-label">Phone Number <span class="required">*</span></label>
+<input type="tel" class="form-control" name="phone" required placeholder="Enter phone number">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+<label class="form-label">Number of Travelers <span class="required">*</span></label>
+                <select class="form-control" name="people" required id="booking-people">
+<option value="1">1 Person</option>
+<option value="2" selected>2 People</option>
+<option value="3">3 People</option>
+<option value="4">4 People</option>
+<option value="5">5+ People</option>
+                </select>
+              </div>
+              <div class="form-group">
+<label class="form-label">Special Requirements</label>
+<input type="text" class="form-control" name="note" placeholder="Dietary restrictions, accessibility needs, etc. (optional)">
+              </div>
+            </div>
+            <div class="form-group">
+<label class="form-label">Additional Notes</label>
+<textarea class="form-control" name="message" rows="3" placeholder="Other remarks (optional)"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg btn-block">
+<i class="fas fa-check"></i> Confirm & Submit Booking
+            </button>
+          </form>
+          <div class="booking-success" id="booking-success" style="display:none">
+            <i class="fas fa-check-circle"></i>
+<h3>Booking Submitted Successfully!</h3>
+<p>Thank you for your booking. Our team will contact you within 30 minutes to confirm the details.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+<div class="footer-logo"><i class="fas fa-paper-plane"></i><span>HuanYou Travel</span></div>
+<p class="footer-desc">Quality travel — making every journey a beautiful memory.</p>
+        </div>
+        <div class="footer-links">
+<h4>Quick Links</h4>
+          <ul>
+<li><a href="/routes">Tours</a></li>
+<li><a href="/destinations">Popular Destinations</a></li>
+<li><a href="/guides">Travel Guides</a></li>
+<li><a href="about.html">About Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+<h4>Popular Destinations</h4>
+          <ul>
+<li><a href="/destinations">Yunnan</a></li>
+<li><a href="/destinations">Sichuan</a></li>
+<li><a href="/destinations">Tibet</a></li>
+<li><a href="/destinations">Guangxi</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+<h4>Contact Us</h4>
+          <ul>
+            <li><i class="fas fa-phone"></i> 400-888-6789</li>
+            <li><i class="fas fa-envelope"></i> info@lututrip.com</li>
+<li><i class="fas fa-map-marker-alt"></i> Beijing, China</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+<p>&copy; 2026 HuanYou Travel. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">Sitemap</a></p>
+      </div>
+    </div>
+  </footer>
+  <script src="supabase-config.js"></script>
+  <script src="js/cloud.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/data.js"></script>
+<script>
+  (function() {
+    var routeId = new URLSearchParams(location.search).get('route');
+    var routeData = null;
+    var pricePer = 3280;
+    var peopleEl = document.getElementById('booking-people');
+    var totalEl = document.getElementById('summary-total');
+    var peopleLabelEl = document.getElementById('summary-people');
+    var routeInput = document.getElementById('booking-route');
+
+    function loadRouteFromUrl() {
+      if (!routeId) return;
+      var tries = 0;
+      function tryFill() {
+        tries++;
+        if (window.RouteRenderer && window.DataLoader) {
+          RouteRenderer.renderDetail(routeId).then(function(route) {
+            if (route) {
+              routeData = route;
+              if (routeInput && route.title) routeInput.value = route.title;
+              if (route.price && totalEl) {
+                pricePer = route.price;
+                updateTotal();
+              }
+            } else if (tries < 30) {
+              setTimeout(tryFill, 200);
+            }
+          });
+        } else if (tries < 30) {
+          setTimeout(tryFill, 200);
+        }
+      }
+      tryFill();
+    }
+    loadRouteFromUrl();
+
+    function updateTotal() {
+      var people = parseInt((peopleEl || {}).value || '2');
+if (peopleLabelEl) peopleLabelEl.textContent = people + ' people';
+      if (totalEl) totalEl.textContent = '¥' + pricePer * people;
+    }
+    if (peopleEl) peopleEl.addEventListener('change', updateTotal);
+    var dateEl = document.getElementById('booking-date');
+    if (dateEl) {
+      var d = new Date();
+      d.setDate(d.getDate() + 3);
+      dateEl.valueAsDate = d;
+      dateEl.min = d.toISOString().split('T')[0];
+    }
+    var form = document.getElementById('booking-form');
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var fd = new FormData(form);
+        var data = Object.fromEntries(fd.entries());
+        data.id = 'ORD' + Date.now();
+        data.createdAt = new Date().toISOString();
+        data.status = 'pending';
+        if (window.Store) Store.saveOrder(data);
+        form.style.display = 'none';
+        var succ = document.getElementById('booking-success');
+        if (succ) succ.style.display = 'block';
+if (window.Toast) Toast.show('Booking submitted! We will contact you shortly.', 'success');
+      });
+    }
+  })();
+</script></body>
+</html>
