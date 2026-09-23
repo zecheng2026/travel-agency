@@ -820,10 +820,15 @@ window.MobileNav = MobileNav;
     var menu = dd.querySelector(".lang-menu");
     var items = menu.querySelectorAll("li");
 
+        var langLabelCodes = { 'en': 'EN', 'zh-CN': '中文', 'ja': '日本語', 'es': 'ES', 'ar': 'AR' };
+    var btnLabel = btn.querySelector('.lang-btn-label');
     function setActive(lang) {
       items.forEach(function (li) {
         li.classList.toggle("active", li.dataset.lang === lang);
       });
+      if (btnLabel) {
+        btnLabel.textContent = langLabelCodes[lang] || (lang ? lang.toUpperCase() : 'EN');
+      }
     }
 
     function changeLanguage(lang) {

@@ -156,8 +156,9 @@
         </a>
 <div class="lang-dropdown" id="lang-dropdown">
   <button type="button" class="lang-btn" aria-label="Select language" aria-expanded="false">
-    <span>Select Language</span>
-    <i class="fas fa-chevron-down"></i>
+    <i class="fas fa-globe lang-btn-globe"></i>
+    <span class="lang-btn-label">EN</span>
+    <i class="fas fa-chevron-down lang-btn-chevron"></i>
   </button>
   <ul class="lang-menu" role="menu">
     <li role="menuitem" data-lang="en" class="active">English</li>
@@ -345,6 +346,7 @@
   <script src="js/cloud.js"></script>
   <script src="js/app.js"></script>
   <script src="js/data.js"></script>
+  <script src="js/contact.js"></script>
   <script>
     function escH(t) {
       return String(t == null ? '' : t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');

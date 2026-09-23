@@ -22,8 +22,9 @@
         <a href="tel:400-888-6789" class="header-phone"><i class="fas fa-phone-alt"></i> 400-888-6789</a>
 <div class="lang-dropdown" id="lang-dropdown">
   <button type="button" class="lang-btn" aria-label="Select language" aria-expanded="false">
-    <span>Select Language</span>
-    <i class="fas fa-chevron-down"></i>
+    <i class="fas fa-globe lang-btn-globe"></i>
+    <span class="lang-btn-label">EN</span>
+    <i class="fas fa-chevron-down lang-btn-chevron"></i>
   </button>
   <ul class="lang-menu" role="menu">
     <li role="menuitem" data-lang="en" class="active">English</li>
@@ -155,14 +156,10 @@
   <script src="js/cloud.js"></script>
   <script src="js/app.js"></script>
   <script src="js/data.js"></script>
+  <script src="js/booking.js"></script>
 <script>
   (function() {
     var routeId = new URLSearchParams(location.search).get('route');
-    var routeData = null;
-    var pricePer = 3280;
-    var peopleEl = document.getElementById('booking-people');
-    var totalEl = document.getElementById('summary-total');
-    var peopleLabelEl = document.getElementById('summary-people');
     var routeInput = document.getElementById('booking-route');
 
     function loadRouteFromUrl() {
@@ -173,12 +170,7 @@
         if (window.RouteRenderer && window.DataLoader) {
           RouteRenderer.renderDetail(routeId).then(function(route) {
             if (route) {
-              routeData = route;
               if (routeInput && route.title) routeInput.value = route.title;
-              if (route.price && totalEl) {
-                pricePer = route.price;
-                updateTotal();
-              }
             } else if (tries < 30) {
               setTimeout(tryFill, 200);
             }
@@ -191,34 +183,12 @@
     }
     loadRouteFromUrl();
 
-    function updateTotal() {
-      var people = parseInt((peopleEl || {}).value || '2');
-if (peopleLabelEl) peopleLabelEl.textContent = people + ' people';
-      if (totalEl) totalEl.textContent = '¥' + pricePer * people;
-    }
-    if (peopleEl) peopleEl.addEventListener('change', updateTotal);
     var dateEl = document.getElementById('booking-date');
     if (dateEl) {
       var d = new Date();
       d.setDate(d.getDate() + 3);
       dateEl.valueAsDate = d;
       dateEl.min = d.toISOString().split('T')[0];
-    }
-    var form = document.getElementById('booking-form');
-    if (form) {
-      form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        var fd = new FormData(form);
-        var data = Object.fromEntries(fd.entries());
-        data.id = 'ORD' + Date.now();
-        data.createdAt = new Date().toISOString();
-        data.status = 'pending';
-        if (window.Store) Store.saveOrder(data);
-        form.style.display = 'none';
-        var succ = document.getElementById('booking-success');
-        if (succ) succ.style.display = 'block';
-if (window.Toast) Toast.show('Booking submitted! We will contact you shortly.', 'success');
-      });
     }
   })();
 </script></body>

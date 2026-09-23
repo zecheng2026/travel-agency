@@ -21,7 +21,21 @@
       <nav class="nav-menu" id="nav-menu"></nav>
       <div class="nav-actions">
         <a href="tel:400-888-6789" class="header-phone"><i class="fas fa-phone-alt"></i> 400-888-6789</a>
-<a href="booking.html" class="btn btn-primary btn-sm">Book Now</a>
+<div class="lang-dropdown" id="lang-dropdown">
+  <button type="button" class="lang-btn" aria-label="Select language" aria-expanded="false">
+    <i class="fas fa-globe lang-btn-globe"></i>
+    <span class="lang-btn-label">EN</span>
+    <i class="fas fa-chevron-down lang-btn-chevron"></i>
+  </button>
+  <ul class="lang-menu" role="menu">
+    <li role="menuitem" data-lang="en" class="active">English</li>
+    <li role="menuitem" data-lang="zh-CN">中文</li>
+    <li role="menuitem" data-lang="ja">日本語</li>
+    <li role="menuitem" data-lang="es">Español</li>
+    <li role="menuitem" data-lang="ar">العربية</li>
+  </ul>
+</div>
+<div id="google_translate_element" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;"></div>
       </div>
 <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>

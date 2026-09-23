@@ -27,8 +27,9 @@
         </a>
 <div class="lang-dropdown" id="lang-dropdown">
   <button type="button" class="lang-btn" aria-label="Select language" aria-expanded="false">
-    <span>Select Language</span>
-    <i class="fas fa-chevron-down"></i>
+    <i class="fas fa-globe lang-btn-globe"></i>
+    <span class="lang-btn-label">EN</span>
+    <i class="fas fa-chevron-down lang-btn-chevron"></i>
   </button>
   <ul class="lang-menu" role="menu">
     <li role="menuitem" data-lang="en" class="active">English</li>
@@ -304,9 +305,16 @@
           }
         }
         if (ac.teamImages && ac.teamImages.length) {
+          var _seenT = {};
+          var _uniqT = ac.teamImages.filter(function(it) {
+            var _k = (it.url || '') + '|' + (it.name || '') + '|' + (it.title || '');
+            if (_seenT[_k]) return false;
+            _seenT[_k] = true;
+            return true;
+          });
           var tg = document.getElementById('core-team-grid');
           if (tg) {
-            tg.innerHTML = ac.teamImages.map(function(it) {
+            tg.innerHTML = _uniqT.map(function(it) {
               if (!it.url) return '';
               return '<div class="core-team-card">'
                 + '<div class="core-team-card-img"><img src="' + escH(it.url) + '" alt="' + escH(it.name||'') + '" loading="lazy"></div>'
