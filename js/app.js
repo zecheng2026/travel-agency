@@ -806,6 +806,37 @@ window.MobileNav = MobileNav;
 
 // ===== Language Dropdown (Self-hosted i18n) =====
 (function initLangDropdown() {
+  // ---- Google Translate Widget (全站自动翻译兜底，仅失败时回落自建 i18n) ----
+  window.googleTranslateElementInit = function () {
+    new google.translate.TranslateElement({
+      pageLanguage: 'en',
+      includedLanguages: 'en,zh-CN,ja,es,ar',
+      autoDisplay: false
+    }, 'google_translate_element');
+  };
+  var googleFailed = false;
+  function loadGoogleTranslate() {
+    if (document.getElementById('google_translate_element')) return;
+    var div = document.createElement('div');
+    div.id = 'google_translate_element';
+    div.style.display = 'none';
+    document.body.appendChild(div);
+    var s = document.createElement('script');
+    s.type = 'text/javascript';
+    s.async = true;
+    s.onerror = function () { googleFailed = true; };
+    s.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+    document.body.appendChild(s);
+  }
+  function triggerGoogleTranslate(lang) {
+    var combo = document.querySelector('.goog-te-combo');
+    if (combo) {
+      combo.value = (lang === 'en') ? '' : lang;
+      combo.dispatchEvent(new Event('change'));
+      return true;
+    }
+    return false;
+  }
   // UI translation dictionary
   var I18N = {
     'en': { home:'Home', tours:'Tours', destinations:'Destinations', guides:'Travel Guides', about:'About Us', contact:'Contact',
@@ -885,6 +916,7 @@ window.MobileNav = MobileNav;
   }
 
   document.addEventListener("DOMContentLoaded", function () {
+    loadGoogleTranslate();
     var dd = document.getElementById("lang-dropdown");
     if (!dd) return;
     var btn = dd.querySelector(".lang-btn");
@@ -902,9 +934,17 @@ window.MobileNav = MobileNav;
     }
 
     function changeLanguage(lang) {
-      applyLang(lang);
       setActive(lang);
       try { localStorage.setItem("hyt_lang", lang); } catch (err) {}
+      if (lang === 'en') {
+        document.cookie = 'googtrans=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+      } else {
+        document.cookie = 'googtrans=/en/' + lang + '; path=/';
+      }
+      if (!triggerGoogleTranslate(lang)) {
+        if (googleFailed) { applyLang(lang); }
+        else { setTimeout(function () { triggerGoogleTranslate(lang); }, 2000); }
+      }
     }
 
     btn.addEventListener("click", function (e) {
