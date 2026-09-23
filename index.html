@@ -258,48 +258,19 @@ More Travel Guides <i class="fas fa-arrow-right"></i>
     </div>
   </section>
 
-  <!-- About Preview -->
+  <!-- About Preview (admin 后台管理：settings.aboutContent.aboutText + homePreview + features) -->
   <section class="section section-sm" style="background:var(--color-bg);">
     <div class="container">
       <div class="about-grid">
         <div class="about-image reveal">
-<img src="https://images.unsplash.com/photo-1488085061387-422e29b40080?w=800&q=80" alt="HuanYou Travel">
+          <img id="home-about-image" src="" alt="HuanYou Travel">
         </div>
         <div class="about-content reveal reveal-delay-1">
-<h2 class="heading-lg" style="margin-bottom:var(--space-lg);">About HuanYou Travel</h2>
-<p id="about-preview-text" style="color:var(--color-text-secondary);line-height:var(--line-height-relaxed);margin-bottom:var(--space-lg);">HuanYou Travel is a comprehensive travel enterprise dedicated to premium travel services. We are committed to providing every traveler with a unique, comfortable, and safe travel experience.</p>
-          <div class="about-features">
-            <div class="about-feature">
-              <div class="about-feature-icon"><i class="fas fa-shield-alt"></i></div>
-              <div>
-<div class="about-feature-title">Quality Guaranteed</div>
-<div class="about-feature-text">Carefully selected suppliers with strict itinerary control</div>
-              </div>
-            </div>
-            <div class="about-feature">
-              <div class="about-feature-icon"><i class="fas fa-headset"></i></div>
-              <div>
-<div class="about-feature-title">Dedicated Support</div>
-<div class="about-feature-text">24/7 online, real-time response to your needs</div>
-              </div>
-            </div>
-            <div class="about-feature">
-              <div class="about-feature-icon"><i class="fas fa-hand-holding-heart"></i></div>
-              <div>
-<div class="about-feature-title">Thoughtful Service</div>
-<div class="about-feature-text">Attention to detail for a worry-free journey</div>
-              </div>
-            </div>
-            <div class="about-feature">
-              <div class="about-feature-icon"><i class="fas fa-tags"></i></div>
-              <div>
-<div class="about-feature-title">Great Value</div>
-<div class="about-feature-text">No middlemen — better quality at better prices</div>
-              </div>
-            </div>
-          </div>
-          <a href="about.html" class="btn btn-primary" style="margin-top:var(--space-xl);">
-Learn More <i class="fas fa-arrow-right"></i>
+          <h2 id="home-about-title" class="heading-lg" style="margin-bottom:var(--space-lg);">About HuanYou Travel</h2>
+          <p id="about-preview-text" style="color:var(--color-text-secondary);line-height:var(--line-height-relaxed);margin-bottom:var(--space-lg);"></p>
+          <div id="home-about-features" class="about-features"></div>
+          <a id="home-about-btn" href="about.html" class="btn btn-primary" style="margin-top:var(--space-xl);">
+            <span id="home-about-btn-text">Learn More</span> <i class="fas fa-arrow-right"></i>
           </a>
         </div>
       </div>
@@ -380,9 +351,43 @@ ${t.avatar ? `<img src="${t.avatar}" alt="User Avatar" class="testimonial-avatar
       }
 
 // About preview (configurable in admin)
+      const aboutContent = settings?.aboutContent || {};
+      const hp = aboutContent.homePreview || {};
+      const FALLBACK_IMG = 'https://images.unsplash.com/photo-1488085061387-422e29b40080?w=800&q=80';
+      const FALLBACK_TITLE = 'About HuanYou Travel';
+      const FALLBACK_BTN_TEXT = 'Learn More';
+      const FALLBACK_BTN_HREF = 'about.html';
+      const FALLBACK_FEATURES = [
+        { icon: 'fa-shield-alt', title: 'Quality Guaranteed', desc: 'Carefully selected suppliers with strict itinerary control' },
+        { icon: 'fa-headset', title: 'Dedicated Support', desc: '24/7 online, real-time response to your needs' },
+        { icon: 'fa-hand-holding-heart', title: 'Thoughtful Service', desc: 'Attention to detail for a worry-free journey' },
+        { icon: 'fa-tags', title: 'Great Value', desc: 'No middlemen — better quality at better prices' }
+      ];
+      const escH = s => String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
       if (settings?.aboutText) {
         const aboutEl = document.getElementById('about-preview-text');
         if (aboutEl) aboutEl.textContent = settings.aboutText;
+      }
+      const imgEl = document.getElementById('home-about-image');
+      if (imgEl) { imgEl.src = hp.image || FALLBACK_IMG; imgEl.alt = hp.title || FALLBACK_TITLE; }
+      const titleEl = document.getElementById('home-about-title');
+      if (titleEl) titleEl.textContent = hp.title || FALLBACK_TITLE;
+      const btnEl = document.getElementById('home-about-btn');
+      const btnTextEl = document.getElementById('home-about-btn-text');
+      if (btnEl) btnEl.href = hp.buttonHref || FALLBACK_BTN_HREF;
+      if (btnTextEl) btnTextEl.textContent = hp.buttonText || FALLBACK_BTN_TEXT;
+      const feats = (Array.isArray(aboutContent.features) && aboutContent.features.length) ? aboutContent.features : FALLBACK_FEATURES;
+      const featsEl = document.getElementById('home-about-features');
+      if (featsEl) {
+        featsEl.innerHTML = feats.slice(0, 8).map(f => `
+          <div class="about-feature">
+            <div class="about-feature-icon"><i class="fas ${escH(f.icon || '')}"></i></div>
+            <div>
+              <div class="about-feature-title">${escH(f.title || '')}</div>
+              <div class="about-feature-text">${escH(f.desc || '')}</div>
+            </div>
+          </div>
+        `).join('');
       }
       
 // Counter animation

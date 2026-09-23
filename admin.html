@@ -358,6 +358,27 @@
               <label class="form-label">首页关于我们（显示在首页底部关于区域）</label>
               <textarea id="hp-about" class="form-control" rows="3" placeholder="简要介绍公司..."></textarea>
             </div>
+            <div class="form-group">
+              <label class="form-label">首页预览 - 左侧图片 URL</label>
+              <div style="display:flex;gap:8px;align-items:center;">
+                <input type="text" id="hp-home-image" class="form-control" placeholder="https://... 或上传图片" style="flex:1;">
+                <button type="button" class="btn btn-outline btn-sm" onclick="AdminImageUpload.pickUrl('hp-home-image')"><i class="fas fa-image"></i> 上传图片</button>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">首页预览 - 板块标题</label>
+                <input type="text" id="hp-home-title" class="form-control" placeholder="About HuanYou Travel">
+              </div>
+              <div class="form-group">
+                <label class="form-label">按钮文字</label>
+                <input type="text" id="hp-home-btnText" class="form-control" placeholder="Learn More">
+              </div>
+              <div class="form-group">
+                <label class="form-label">按钮链接</label>
+                <input type="text" id="hp-home-btnHref" class="form-control" placeholder="about.html 或 /routes">
+              </div>
+            </div>
           </div>
           <!-- About Us 首图板块已下线：公司简介改用单列图文混编（RichEditor），首图与团队图片编辑区一并移除 -->
           <div class="admin-card">

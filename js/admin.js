@@ -1349,6 +1349,11 @@ const AdminHomepage = {
     set('hp-announcement', s.announcement);
     const ac = s.aboutContent || {};
     set('hp-about', ac.aboutText);
+    const hp = ac.homePreview || {};
+    set('hp-home-image', hp.image);
+    set('hp-home-title', hp.title);
+    set('hp-home-btnText', hp.buttonText);
+    set('hp-home-btnHref', hp.buttonHref);
     // About Us 首图/团队图片板块已下线（公司简介改单列图文混编）
     this.loadFooterData(s);
   },
@@ -1439,7 +1444,15 @@ const AdminHomepage = {
       featuredDestinations,
       featuredGuides,
       announcement: g('hp-announcement'),
-      aboutContent: ((Settings.get() || {}).aboutContent) || {},
+      aboutContent: Object.assign({}, ((Settings.get() || {}).aboutContent) || {}, {
+        aboutText: g('hp-about'),
+        homePreview: {
+          image: g('hp-home-image'),
+          title: g('hp-home-title'),
+          buttonText: g('hp-home-btnText'),
+          buttonHref: g('hp-home-btnHref')
+        }
+      }),
       testimonials,
       footerQuickLinks: (fData||{}).footerQuickLinks || [],
       footerDestLinks: (fData||{}).footerDestLinks || [],
