@@ -1631,11 +1631,6 @@ const AdminSettings = {
     set('set-icp', s.icpNumber);
     if (document.getElementById('set-seo-title')) document.getElementById('set-seo-title').value = s.seoTitle || '';
     if (document.getElementById('set-seo-description')) document.getElementById('set-seo-description').value = s.seoDescription || '';
-    // 关于我们 / 联系我们内容
-    const ac = s.aboutContent || {};
-    set('set-about-intro', ac.intro);
-    set('set-about-mission', ac.mission);
-    set('set-about-vision', ac.vision);
     const cc = s.contactContent || {};
     set('set-contact-hours', cc.hours);
     const pv = document.getElementById('set-logo-preview');
