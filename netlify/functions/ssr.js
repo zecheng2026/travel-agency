@@ -199,6 +199,12 @@ function renderDest(tpl, dest) {
   html = html.replace(/<title[^>]*>[^<]*<\/title>/, `<title>${seoTitle}</title>`);
   html = html.replace(/<meta name="description"[^>]*>/, `<meta name="description" content="${esc(seoDesc)}">`);
   html = html.replace(/<img src="" alt="[^"]*"/, `<img src="${esc(dest.cover || dest.image || '')}" alt="${esc(dest.name)}"`);
+  if (dest.coverWidth) {
+    const _cw = parseInt(dest.coverWidth) || 0;
+    if (_cw > 0) {
+      html = html.replace(/<div class="dest-detail-hero">/, `<div class="dest-detail-hero" style="max-width:${_cw}px;margin-left:auto;margin-right:auto;">`);
+    }
+  }
   html = html.replace(/(<h1 class="page-title">)[^<]*(<\/h1>)/, `$1${esc(dest.name)}$2`);
   html = html.replace(/(<h1 class="dest-detail-title">)[^<]*(<\/h1>)/, `$1${esc(dest.name)}$2`);
   html = html.replace(/(<span class="current">)[^<]*(<\/span>)/, `$1${esc(dest.name)}$2`);
