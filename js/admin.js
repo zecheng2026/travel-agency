@@ -1249,8 +1249,7 @@ const AdminGuides = {
     `;
     AdminModal.open(id ? '编辑攻略' : '新增攻略', body, () => this.save(), 'lg');
     AdminImageUpload.setup('g')
-    AdminImageUpload.setup('hp-about-hero');
-    AdminImageUpload.setup('hp-about-story');;
+    AdminImageUpload.setup('hp-about-story');
   },
 
   async save() {
@@ -1344,13 +1343,7 @@ const AdminHomepage = {
     set('hp-announcement', s.announcement);
     const ac = s.aboutContent || {};
     set('hp-about', ac.aboutText);
-    set('hp-about-hero-url', ac.heroImage);
-    set('hp-about-hero-width', ac.heroImageWidth);
-    if (ac.teamImages && ac.teamImages.length > 0) {
-      ac.teamImages.forEach(function(item) { AdminHomepage.addTeamImageRow(item); });
-    } else if (ac.storyImage) {
-      AdminHomepage.addTeamImageRow({url: ac.storyImage, width: ac.storyImageWidth || 0});
-    }
+    // About Us 首图/团队图片板块已下线（公司简介改单列图文混编）
     this.loadFooterData(s);
   },
 
@@ -1409,30 +1402,6 @@ const AdminHomepage = {
     return div;
   },
 
-  addTeamImageRow(item) {
-    item = item || {};
-    var rows = document.getElementById('hp-about-team-rows');
-    if (!rows) return;
-    if (document.querySelectorAll('.ti-row').length >= 8) { Toast && Toast.warning && Toast.warning('最多 8 张图片'); return; }
-    var row = document.createElement('div');
-    row.className = 'ti-row';
-    row.innerHTML = '<img class="ti-img-pv" src="" style="display:none;width:80px;height:60px;object-fit:cover;border-radius:6px;flex-shrink:0;">' +
-      '<input type="text" class="ti-img-url form-control" placeholder="图片URL" value="">' +
-      '<button type="button" class="btn-icon" title="上传" onclick="var inp=this.previousElementSibling;AdminImageUpload.pickUrl(inp)"><i class="fas fa-upload"></i></button>' +
-      '<input type="number" class="ti-img-w form-control" placeholder="宽度px" min="200" max="3840" value="" style="width:90px;">' +
-      '<input type="text" class="ti-img-name form-control" placeholder="姓名" value="" style="width:90px;">' +
-      '<input type="text" class="ti-img-title form-control" placeholder="职位" value="" style="width:130px;">' +
-      '<button type="button" class="btn-icon" title="删除" onclick="this.closest(\'.ti-row\').remove();"><i class="fas fa-trash"></i></button>';
-    rows.appendChild(row);
-    var urlIn = row.querySelector('.ti-img-url');
-    var pvImg = row.querySelector('.ti-img-pv');
-    var wIn = row.querySelector('.ti-img-w');
-    if (item.url) { urlIn.value = item.url; pvImg.src = item.url; pvImg.style.display = 'block'; if (item.width) wIn.value = item.width; }
-    var nameIn = row.querySelector('.ti-img-name'); if (nameIn) nameIn.value = item.name || '';
-    var titleIn = row.querySelector('.ti-img-title'); if (titleIn) titleIn.value = item.title || '';
-    urlIn.oninput = function() { var url = urlIn.value.trim(); pvImg.src = url; pvImg.style.display = url ? 'block' : 'none'; };
-  },
-
   async save() {
     const banner = { images: [], titles: [], subtitles: [] };
     document.querySelectorAll('#hp-banner-rows .hp-row').forEach(row => {
@@ -1464,25 +1433,7 @@ const AdminHomepage = {
       featuredDestinations,
       featuredGuides,
       announcement: g('hp-announcement'),
-      aboutContent: Object.assign(
-        {},
-        ((Settings.get() || {}).aboutContent) || {},
-        {
-          heroImage: document.getElementById('hp-about-hero-url').value.trim(),
-          heroImageWidth: parseInt(document.getElementById('hp-about-hero-width').value) || 0,
-          teamImages: Array.from(document.querySelectorAll('.ti-row')).map(function(row) {
-            var nEl = row.querySelector('.ti-img-name');
-            var tEl = row.querySelector('.ti-img-title');
-            return {
-              url: row.querySelector('.ti-img-url').value.trim(),
-              width: parseInt(row.querySelector('.ti-img-w').value) || 0,
-              name: nEl ? nEl.value.trim() : '',
-              title: tEl ? tEl.value.trim() : ''
-            };
-          }).filter(function(item) { return item.url; }),
-          aboutText: g('hp-about')
-        }
-      ),
+      aboutContent: ((Settings.get() || {}).aboutContent) || {},
       testimonials,
       footerQuickLinks: (fData||{}).footerQuickLinks || [],
       footerDestLinks: (fData||{}).footerDestLinks || [],

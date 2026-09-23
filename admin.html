@@ -359,33 +359,7 @@
               <textarea id="hp-about" class="form-control" rows="3" placeholder="简要介绍公司..."></textarea>
             </div>
           </div>
-          <div class="form-group">
-            <label class="form-label">About Us 首图</label>
-            <div class="image-uploader">
-              <input type="file" id="hp-about-hero-file" accept="image/*" style="display:none">
-              <div class="image-uploader-area" id="hp-about-hero-area">
-                <img id="hp-about-hero-preview" class="upload-preview" src="" style="display:none">
-                <div class="image-uploader-placeholder" id="hp-about-hero-placeholder"><i class="fas fa-cloud-upload-alt"></i><p>点击或拖拽上传</p></div>
-              </div>
-              <div class="image-uploader-url-row">
-                <input type="text" class="form-control" id="hp-about-hero-url" placeholder="或粘贴图片 URL" value="">
-                <button type="button" class="btn-icon upload" title="上传图片" onclick="AdminImageUpload.pickUrl(document.getElementById('hp-about-hero-url'))"><i class="fas fa-image"></i></button>
-              </div>
-            </div>
-            <div style="display:flex;gap:8px;align-items:center;margin-top:6px;">
-              <label style="font-size:13px;color:#666;">首图宽度</label>
-              <input type="number" class="form-control" id="hp-about-hero-width" value="" min="200" max="3840" placeholder="留空全宽" style="width:100px;">
-              <span style="font-size:12px;color:#888;">px</span>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="form-label">About Us 团队图片（多张上下排列）</label>
-            <div id="hp-about-team-rows"></div>
-            <button type="button" class="btn btn-outline btn-sm" onclick="AdminHomepage.addTeamImageRow()" style="margin-top:8px;">
-              <i class="fas fa-plus"></i> 添加图片
-            </button>
-            <div style="font-size:12px;color:#888;margin-top:4px;">最多 8 张，支持单独设置每张宽度</div>
-          </div>
+          <!-- About Us 首图板块已下线：公司简介改用单列图文混编（RichEditor），首图与团队图片编辑区一并移除 -->
           <div class="admin-card">
             <h3 class="admin-card-title"><i class="fas fa-th-list"></i> 页脚 Footer</h3>
             <p class="admin-note" style="margin:-8px 0 14px;">Quick Links / 热门目的地 / Sitemap 在前台底部展示。后台可直接编辑每条链接的标题与 URL。</p>
@@ -512,7 +486,7 @@
           <div class="admin-card">
             <h3 class="admin-card-title"><i class="fas fa-align-left"></i> 公司简介</h3>
             <div class="form-group">
-              <label class="form-label">简介正文（显示在“关于我们”首屏）</label>
+              <label class="form-label">简介正文（图文混编：粗体/斜体/链接/上传图片/图片宽度）</label>
               <textarea id="ab-intro" class="form-control" rows="3" placeholder="公司介绍..."></textarea>
             </div>
           </div>
@@ -640,6 +614,191 @@
       function getVal(id) { var el = document.getElementById(id); return el ? el.value.trim() : ""; }
       function setVal(id, v) { var el = document.getElementById(id); if (el) el.value = (v == null ? "" : v); }
 
+      // ===== 富文本编辑器（图文混编：粗体/斜体/链接/上传图片/图片宽度） =====
+      window.RichEditor = {
+        instances: {},
+        fileUploader: null, // 外部可注入: function(file) -> Promise<url>
+
+        setup: function(textareaId, options) {
+          options = options || {};
+          var ta = document.getElementById(textareaId);
+          if (!ta) return null;
+
+          var ed = document.createElement('div');
+          ed.className = 'rich-editor';
+          ed.contentEditable = 'true';
+          ed.setAttribute('data-placeholder', ta.getAttribute('placeholder') || '在此输入正文…');
+
+          var tb = document.createElement('div');
+          tb.className = 'rich-editor-toolbar';
+          tb.innerHTML =
+            '<button type="button" data-cmd="bold" title="粗体"><i class="fas fa-bold"></i></button>' +
+            '<button type="button" data-cmd="italic" title="斜体"><i class="fas fa-italic"></i></button>' +
+            '<button type="button" data-cmd="createLink" title="插入链接"><i class="fas fa-link"></i></button>' +
+            '<button type="button" data-cmd="uploadImage" title="上传/插入图片"><i class="fas fa-image"></i></button>' +
+            '<button type="button" data-cmd="setImageWidth" title="设置选中图片宽度(px)"><i class="fas fa-arrows-alt-h"></i> 宽度</button>' +
+            '<button type="button" data-cmd="setImageFull" title="图片恢复全宽"><i class="fas fa-expand"></i></button>' +
+            '<button type="button" data-cmd="removeFormat" title="清除格式"><i class="fas fa-eraser"></i></button>';
+
+          ta.style.display = 'none';
+          ta.parentNode.insertBefore(tb, ta);
+          ta.parentNode.insertBefore(ed, ta);
+
+          var self = this;
+          tb.addEventListener('click', function(e) {
+            var btn = e.target.closest('button[data-cmd]');
+            if (!btn) return;
+            e.preventDefault();
+            ed.focus();
+            var cmd = btn.dataset.cmd;
+            if (cmd === 'uploadImage') { self._uploadImage(ed); return; }
+            if (cmd === 'setImageWidth') { self._setImageWidth(ed); return; }
+            if (cmd === 'setImageFull') { self._setImageFull(ed); return; }
+            if (cmd === 'createLink') {
+              var url = prompt('输入链接 URL（http:// 开头）', 'https://');
+              if (url) document.execCommand('createLink', false, url);
+              return;
+            }
+            document.execCommand(cmd, false, null);
+          });
+
+          // 粘贴只保留纯文本，避免外部 HTML 注入
+          ed.addEventListener('paste', function(e) {
+            e.preventDefault();
+            var text = (e.clipboardData || window.clipboardData).getData('text/plain') || '';
+            document.execCommand('insertText', false, text);
+          });
+
+          var updatePH = function() { ed.classList.toggle('is-empty', !ed.textContent.trim()); };
+          ed.addEventListener('input', updatePH);
+          ed.addEventListener('blur', updatePH);
+          updatePH();
+
+          this.instances[textareaId] = { textareaId: textareaId, editor: ed, textarea: ta, toolbar: tb };
+          return textareaId;
+        },
+
+        getHTML: function(textareaId) {
+          var inst = this.instances[textareaId];
+          if (!inst) return '';
+          return this._sanitize(inst.editor.innerHTML);
+        },
+
+        setHTML: function(textareaId, html) {
+          var inst = this.instances[textareaId];
+          if (!inst) return;
+          inst.editor.innerHTML = html || '';
+          inst.editor.classList.toggle('is-empty', !inst.editor.textContent.trim());
+        },
+
+        // 把旧纯文本（含 \n\n 段落分隔）转 HTML 段落
+        _plainToParagraphs: function(text) {
+          if (!text) return '';
+          return String(text).split(/\n{2,}/).filter(Boolean).map(function(p) {
+            return '<p>' + String(p).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>') + '</p>';
+          }).join('');
+        },
+
+        _uploadImage: function(ed) {
+          var self = this;
+          var inp = document.createElement('input');
+          inp.type = 'file';
+          inp.accept = 'image/*';
+          inp.onchange = function() {
+            var f = inp.files && inp.files[0];
+            if (!f) return;
+            if (typeof self.fileUploader === 'function') {
+              self.fileUploader(f).then(function(url) { self._insertImage(ed, url); })
+                .catch(function(err) { alert('图片上传失败：' + ((err && err.message) || err)); });
+            } else if (window.Cloud && Cloud.uploadImage) {
+              var ext = (f.name.split('.').pop() || 'jpg').toLowerCase();
+              Cloud.uploadImage(f, ext).then(function(url) { self._insertImage(ed, url); })
+                .catch(function(err) { alert('图片上传失败：' + ((err && err.message) || err)); });
+            } else {
+              var reader = new FileReader();
+              reader.onload = function() { self._insertImage(ed, reader.result); };
+              reader.readAsDataURL(f);
+            }
+          };
+          inp.click();
+        },
+
+        _insertImage: function(ed, url) {
+          var alt = prompt('图片描述 alt（可留空）', '') || '';
+          var safeUrl = String(url).replace(/"/g,'&quot;');
+          var safeAlt = alt.replace(/"/g,'&quot;');
+          document.execCommand('insertHTML', false,
+            '<img src="' + safeUrl + '" alt="' + safeAlt + '" style="max-width:100%;display:block;margin:12px auto;border-radius:6px;">');
+        },
+
+        _getSelectedImage: function(ed) {
+          var sel = window.getSelection();
+          if (!sel || !sel.rangeCount) return null;
+          var node = sel.anchorNode;
+          while (node && node !== ed) {
+            if (node.nodeType === 1 && node.tagName === 'IMG') return node;
+            node = node.parentNode;
+          }
+          return null;
+        },
+
+        _setImageWidth: function(ed) {
+          var img = this._getSelectedImage(ed);
+          if (!img) { alert('请先点击图片选中它，再点"宽度"按钮'); return; }
+          var cur = '';
+          if (img.style && img.style.maxWidth) { var m = img.style.maxWidth.match(/(\d+)/); if (m) cur = m[1]; }
+          var w = prompt('设置图片宽度（px），建议 400-1200，留空取消', cur || '800');
+          if (!w) return;
+          var n = parseInt(w) || 0;
+          if (n > 0) { img.style.maxWidth = n + 'px'; img.style.width = '100%'; img.setAttribute('data-width', n); }
+        },
+
+        _setImageFull: function(ed) {
+          var img = this._getSelectedImage(ed);
+          if (!img) { alert('请先点击图片选中它'); return; }
+          img.style.maxWidth = '';
+          img.removeAttribute('data-width');
+        },
+
+        _sanitize: function(html) {
+          var allow = /^(p|br|strong|b|em|i|u|a|img|h[1-4]|ul|ol|li|blockquote|span|div)$/i;
+          var wrap = document.createElement('div');
+          wrap.innerHTML = html || '';
+          var walk = function(n) {
+            var children = Array.from(n.childNodes);
+            children.forEach(function(c) {
+              if (c.nodeType === 1) {
+                if (!allow.test(c.tagName)) {
+                  while (c.firstChild) n.insertBefore(c.firstChild, c);
+                  n.removeChild(c);
+                  return;
+                }
+                var attrs = Array.from(c.attributes);
+                attrs.forEach(function(a) {
+                  var an = a.name.toLowerCase();
+                  var okAttr = false;
+                  if (c.tagName === 'A' && an === 'href') okAttr = true;
+                  else if (c.tagName === 'IMG' && (an === 'src' || an === 'alt' || an === 'style' || an === 'data-width' || an === 'title')) okAttr = true;
+                  else if (an === 'style' || an === 'class') okAttr = true;
+                  if (!okAttr) c.removeAttribute(a.name);
+                });
+                if (c.tagName === 'A') {
+                  var href = c.getAttribute('href') || '';
+                  if (!/^(https?:|mailto:|#|\/)/i.test(href)) c.removeAttribute('href');
+                  c.setAttribute('target', '_blank');
+                  c.setAttribute('rel', 'noopener noreferrer');
+                }
+                walk(c);
+              } else if (c.nodeType !== 3 && c.nodeType !== 8) {
+                n.removeChild(c);
+              }
+            });
+          };
+          walk(wrap);
+          return wrap.innerHTML;
+        }
+      };
+
       window.AdminAbout = {
         addRow: function (item, type) {
           item = item || {};
@@ -666,7 +825,11 @@
             var s = (window.Settings && Settings.get()) || {};
             var ac = s.aboutContent || {};
             setVal("ab-subtitle", ac.subtitle || "专注品质旅行 15 年，用心服务每一位游客");
-            setVal("ab-intro", ac.intro || "旅途旅行成立于 2010 年...");
+            // 简介正文：富文本（图文章混编），兼容旧 intro 纯文本（自动转 paragraphs）
+            var _introHtml = ac.introHtml;
+            if (!_introHtml && ac.intro) _introHtml = RichEditor._plainToParagraphs(ac.intro);
+            if (!RichEditor.instances || !RichEditor.instances["ab-intro"]) RichEditor.setup("ab-intro");
+            RichEditor.setHTML("ab-intro", _introHtml || "旅途旅行成立于 2010 年...");
             setVal("ab-story", ac.story || "");
             var featRows = document.getElementById("ab-feature-rows"); if (featRows) featRows.innerHTML = "";
             var statRows = document.getElementById("ab-stat-rows"); if (statRows) statRows.innerHTML = "";
@@ -692,9 +855,10 @@
           });
           if (features.length === 0) { Toast.error("请至少保留一个优势特色"); return; }
           if (stats.length === 0) { Toast.error("请至少保留一个数据统计"); return; }
+          var _introHtml = RichEditor.getHTML("ab-intro") || getVal("ab-intro");
           await Settings.save({ aboutContent: {
             subtitle: getVal("ab-subtitle"),
-            intro: getVal("ab-intro"),
+            introHtml: _introHtml,
             story: getVal("ab-story"),
             features: features,
             stats: stats

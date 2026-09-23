@@ -61,35 +61,9 @@
   </div>
 
   <main class="about-page">
-    <section class="about-intro">
+    <section class="about-intro-new">
       <div class="container">
-        <div class="about-intro-grid">
-          <div class="about-intro-image">
-<img id="about-hero-img" src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=600&q=80" alt="HuanYou Travel" style="max-width:100%;">
-          </div>
-          <div class="about-intro-text">
-<h2>15 Years of Journeys — Sharing the Most Beautiful Scenery Together</h2>
-            <div id="about-intro-text" class="about-content-placeholder"></div>
-            <div class="about-features">
-              <div class="about-feature">
-                <i class="fas fa-shield-alt"></i>
-<span>Quality Guaranteed</span>
-              </div>
-              <div class="about-feature">
-                <i class="fas fa-headset"></i>
-<span>24/7 Service</span>
-              </div>
-              <div class="about-feature">
-                <i class="fas fa-users"></i>
-<span>Expert Team</span>
-              </div>
-              <div class="about-feature">
-                <i class="fas fa-heart"></i>
-<span>Thoughtful Care</span>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div id="about-intro-html" class="about-intro-html"></div>
       </div>
     </section>
 
@@ -238,39 +212,22 @@
       DataLoader.loadSettings().then(function(s) {
         if (!s || !s.aboutContent) return;
         var ac = s.aboutContent;
-        // About Us images
-        var heroImg = document.getElementById('about-hero-img');
-        if (heroImg && ac.heroImage) { heroImg.src = ac.heroImage; if (ac.heroImageWidth > 0) heroImg.style.maxWidth = ac.heroImageWidth + 'px'; }
-        var teamImagesEl = document.getElementById('about-team-images');
-        var teamSrcs = (ac.teamImages && ac.teamImages.length > 0) ? ac.teamImages : [];
-        if (teamSrcs.length === 0 && ac.storyImage) { teamSrcs = [{url: ac.storyImage, width: ac.storyImageWidth || 0}]; }
-        if (teamImagesEl) {
-          teamImagesEl.innerHTML = '';
-          teamSrcs.forEach(function(item) {
-            if (!item.url) return;
-            var img = document.createElement('img');
-            img.src = item.url; img.alt = 'Team Photo'; img.style.display = 'block';
-            img.style.width = '100%'; img.style.marginBottom = '16px'; img.style.borderRadius = '8px'; img.style.opacity = '0';
-            if (item.width) img.style.maxWidth = item.width + 'px';
-            img.onload = function() { this.style.opacity = '1'; };
-            img.onerror = function() { this.style.display = 'none'; };
-            teamImagesEl.appendChild(img);
-          });
-        }
         var sub = document.querySelector('.page-header .page-subtitle');
         if (sub && ac.subtitle) {
           sub.textContent = ac.subtitle;
           sub.classList.remove('about-content-placeholder');
         }
-        var introEl = document.getElementById('about-intro-text');
-        if (introEl && ac.intro) {
-          if (ac.intro) {
-          var paras = ac.intro.split(/\n{2,}/).filter(Boolean);
-          introEl.innerHTML = paras.map(function(p) {
-            return '<p>' + p.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br>') + '</p>';
-          }).join('');
-        } else { introEl.innerHTML = ''; }
-          introEl.classList.remove('about-content-placeholder');
+        var introEl = document.getElementById('about-intro-html');
+        if (introEl) {
+          // 兼容旧 intro 纯文本（自动转 paragraphs）
+          var html = ac.introHtml;
+          if (!html && ac.intro) {
+            var paras = String(ac.intro).split(/\n{2,}/).filter(Boolean);
+            html = paras.map(function(p) {
+              return '<p>' + p.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>') + '</p>';
+            }).join('');
+          }
+          introEl.innerHTML = html || '';
         }
         if (Array.isArray(ac.features) && ac.features.length) {
           var fg = document.querySelector('.features-grid');
