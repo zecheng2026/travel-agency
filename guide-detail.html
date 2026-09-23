@@ -199,7 +199,7 @@ heroImg.onerror = function() { this.onerror = null; this.src = 'https://via.plac
         var metaEl = document.querySelector('.guide-detail-meta');
 if (metaEl) metaEl.innerHTML = '<span><i class="fas fa-eye"></i> ' + (guide.views || 0) + ' views</span><span><i class="fas fa-tag"></i> ' + (guide.category || '') + '</span>';
         var textEl = document.querySelector('.guide-detail-text');
-        if (textEl) textEl.innerHTML = __md(guide.content || guide.summary || guide.description);
+        if (textEl) textEl.innerHTML = guide.contentHtml ? guide.contentHtml : __md(guide.content || guide.summary || guide.description);
       }).catch(function(e) { console.warn(e); });
     }
     __fill();

@@ -188,7 +188,7 @@ heroImg.onerror = function() { this.onerror = null; this.src = 'https://via.plac
         var breadcrumbCurrent = document.querySelector('.breadcrumb .current');
         if (breadcrumbCurrent) breadcrumbCurrent.textContent = dest.name || breadcrumbCurrent.textContent;
         var desc = document.querySelector('.dest-detail-desc');
-        if (desc) desc.innerHTML = __md(dest.content || dest.summary || dest.description);
+        if (desc) desc.innerHTML = dest.contentHtml ? dest.contentHtml : __md(dest.content || dest.summary || dest.description);
 
         var attractionsBox = document.getElementById('dest-attractions');
         if (attractionsBox) {

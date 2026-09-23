@@ -1080,6 +1080,8 @@ const AdminDestinations = {
     AdminImageUpload.setup('d');
     // setup uploaders for existing highlight rows
     (dest.highlights || []).forEach((_, i) => AdminImageUpload.setup('hl-' + (i + 1)));
+    RichEditor.setup('d-content');
+    RichEditor.setHTML('d-content', dest.contentHtml || RichEditor._plainToParagraphs(dest.content || ''));
   },
 
   hlRowHtml(h, i) {
@@ -1146,7 +1148,8 @@ const AdminDestinations = {
       images: [cover],
       tags: document.getElementById('d-tags').value.split(',').map(t => t.trim()).filter(Boolean),
       summary: document.getElementById('d-summary').value,
-      content: document.getElementById('d-content').value,
+      contentHtml: RichEditor.getHTML('d-content') || '',
+      content: (old ? old.content : ''),
       highlights,
       recommendedRoutes,
       routeCount: (this.allRoutes || []).filter(r => (r.destination === region || r.destination === name) && r.status !== 'draft').length,
@@ -1250,6 +1253,8 @@ const AdminGuides = {
     AdminModal.open(id ? '编辑攻略' : '新增攻略', body, () => this.save(), 'lg');
     AdminImageUpload.setup('g')
     AdminImageUpload.setup('hp-about-story');
+    RichEditor.setup('g-content');
+    RichEditor.setHTML('g-content', guide.contentHtml || RichEditor._plainToParagraphs(guide.content || ''));
   },
 
   async save() {
@@ -1263,7 +1268,8 @@ const AdminGuides = {
       cover: AdminImageUpload.getValue('g'),
       coverWidth: parseInt(document.getElementById('g-coverWidth').value) || 0,
       summary: document.getElementById('g-summary').value,
-      content: document.getElementById('g-content').value,
+      contentHtml: RichEditor.getHTML('g-content') || '',
+      content: (old ? old.content : ''),
       author: document.getElementById('g-author').value.trim() || '旅途旅行',
       publishTime: document.getElementById('g-publishTime').value,
       status: document.getElementById('g-status').value,
