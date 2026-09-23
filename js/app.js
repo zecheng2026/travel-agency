@@ -504,7 +504,7 @@ copyright: s.copyright || '© 2026 HuanYou Travel. All rights reserved.',
 <h4 class="footer-title">Contact Us</h4>
             <div class="footer-contact-item">
               <i class="fas fa-phone"></i>
-              <span>${settings.contact?.phone || '400-888-6789'}</span>
+              <span>${settings.contact?.phone || '18807449678'}</span>
             </div>
             <div class="footer-contact-item">
               <i class="fas fa-envelope"></i>
@@ -936,4 +936,4 @@ window.MobileNav = MobileNav;
       }
     } catch (err) {}
   });
-})();
+})();

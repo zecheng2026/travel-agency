@@ -127,6 +127,7 @@ if (btn) { btn.disabled = false; btn.textContent = 'Submit Booking'; }
   },
 
   showSuccessModal(order) {
+    const settings = Store.getSettings() || {};
     const html = `
       <div class="modal-overlay" id="booking-success-modal">
         <div class="modal" style="max-width:480px;text-align:center;">
@@ -156,7 +157,7 @@ if (btn) { btn.disabled = false; btn.textContent = 'Submit Booking'; }
             </div>
             <p style="font-size:var(--font-size-sm);color:var(--color-text-secondary);margin-bottom:var(--space-xl);">
               <i class="fas fa-phone" style="color:var(--color-primary);margin-right:4px;"></i>
-Questions? Call our hotline: 400-888-6789
+Questions? Call our hotline: ${settings.contact?.phone || '18807449678'}
             </p>
             <div style="display:flex;gap:var(--space-md);justify-content:center;">
 <a href="routes.html" class="btn btn-outline" style="flex:1;">Keep Browsing</a>

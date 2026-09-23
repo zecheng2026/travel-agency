@@ -210,12 +210,14 @@ function renderDest(tpl, dest) {
       `<div class="dest-detail-tags" id="dest-tags">${tagsHtml}</div>`);
   }
   if (highs.length) {
-    const attHtml = highs.map(h =>
-      `<div class="dest-attraction-item">
+    const attHtml = highs.map(h => {
+      const img = (h && h.image) ? `<img class="dest-attraction-image" src="${esc(h.image)}" alt="${esc(h.name || h.title || '')}" loading="lazy" onerror="this.style.display='none'">` : '';
+      return `<div class="dest-attraction-item">
+        ${img}
         <div class="dest-attraction-name"><i class="fas fa-map-marker-alt"></i> ${esc(h.name || h.title || '')}</div>
         <div class="dest-attraction-desc">${esc(h.desc || h.description || h.summary || '')}</div>
-      </div>`
-    ).join('');
+      </div>`;
+    }).join('');
     html = html.replace(/(<div class="dest-attractions" id="dest-attractions">)[^<]*(<\/div>)/,
       `<div class="dest-attractions" id="dest-attractions">${attHtml}</div>`);
   }
@@ -615,7 +617,7 @@ exports.handler = async function (event, context) {
     statusCode: 200,
     headers: {
       'Content-Type': 'text/html; charset=utf-8',
-      'Cache-Control': 'public, max-age=60, stale-while-revalidate=300',
+      'Cache-Control': 'public, max-age=0, must-revalidate',
       'X-SSR': 'true',
     },
     body: html,
