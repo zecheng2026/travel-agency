@@ -791,27 +791,85 @@ window.ScrollTop = ScrollTop;
 window.FormValidator = FormValidator;
 window.MobileNav = MobileNav;
 
-// ===== Language Dropdown & Google Translate =====
+// ===== Language Dropdown (Self-hosted i18n) =====
 (function initLangDropdown() {
-  function loadGT() {
-    if (document.getElementById("gt-loader")) return;
-    var s = document.createElement("script");
-    s.id = "gt-loader";
-    s.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
-    s.async = true;
-    document.head.appendChild(s);
-  }
-
-  window.googleTranslateElementInit = function () {
-    if (!window.google || !window.google.translate) return;
-    new google.translate.TranslateElement({
-      pageLanguage: "en",
-      includedLanguages: "en,zh-CN,ja,es,ar",
-      autoDisplay: false
-    }, "google_translate_element");
+  // UI translation dictionary
+  var I18N = {
+    'en': { home:'Home', tours:'Tours', destinations:'Destinations', guides:'Travel Guides', about:'About Us', contact:'Contact',
+            phone:'400-888-6789', bookNow:'Book Now', browseTours:'Browse Tours', getQuote:'Get a Quote',
+            popularDest:'Popular Destinations', popularTours:'Popular Tours', travelGuides:'Travel Guides',
+            viewAll:'View All Destinations', viewAllTours:'View All Tours', moreGuides:'More Travel Guides',
+            searchTours:'Search Tours', destination:'Destination', duration:'Duration', budget:'Budget',
+            allDest:'All Destinations', allDur:'All Durations', allBud:'All Budgets',
+            learnMore:'Learn More', satisfaction:'Satisfaction', happyTravelers:'Happy Travelers',
+            curatedTours:'Curated Tours', featuredDest:'Featured Destinations', testimonials:'Testimonials',
+            qualityGuaranteed:'Quality Guaranteed', dedicatedSupport:'Dedicated Support',
+            thoughtfulService:'Thoughtful Service', greatValue:'Great Value',
+            qualityDesc:'Carefully selected suppliers with strict itinerary control',
+            supportDesc:'24/7 online, real-time response to your needs',
+            thoughtDesc:'Attention to detail for a worry-free journey',
+            valueDesc:'No middlemen — better quality at better prices' },
+    'zh-CN': { home:'首页', tours:'线路', destinations:'目的地', guides:'旅游攻略', about:'关于我们', contact:'联系我们',
+            phone:'400-888-6789', bookNow:'立即预订', browseTours:'浏览线路', getQuote:'获取报价',
+            popularDest:'热门目的地', popularTours:'热门线路', travelGuides:'旅游攻略',
+            viewAll:'查看全部目的地', viewAllTours:'查看全部线路', moreGuides:'更多攻略',
+            searchTours:'搜索线路', destination:'目的地', duration:'行程天数', budget:'预算',
+            allDest:'全部目的地', allDur:'全部天数', allBud:'全部预算',
+            learnMore:'了解更多', satisfaction:'满意度', happyTravelers:'满意旅客',
+            curatedTours:'精选线路', featuredDest:'精选目的地', testimonials:'旅客评价',
+            qualityGuaranteed:'品质保证', dedicatedSupport:'专属支持',
+            thoughtfulService:'贴心服务', greatValue:'超高性价比',
+            qualityDesc:'精心筛选供应商，严格把控行程质量',
+            supportDesc:'7×24小时在线，实时响应您的需求',
+            thoughtDesc:'注重细节，让旅途无忧',
+            valueDesc:'没有中间商——更优品质更优价格' },
+    'ja': { home:'ホーム', tours:'ツアー', destinations:'目的地', guides:'旅行ガイド', about:'会社概要', contact:'お問合せ',
+            bookNow:'今すぐ予約', browseTours:'ツアーを見る', getQuote:'見積もりを取得',
+            popularDest:'人気の目的地', popularTours:'人気ツアー', travelGuides:'旅行ガイド',
+            viewAll:'全目的地を見る', viewAllTours:'全ツアーを見る', moreGuides:'もっと見る',
+            searchTours:'ツアー検索', destination:'目的地', duration:'期間', budget:'予算',
+            allDest:'全目的地', allDur:'全期間', allBud:'全予算',
+            learnMore:'詳細' },
+    'es': { home:'Inicio', tours:'Tours', destinations:'Destinos', guides:'Guías', about:'Sobre Nosotros', contact:'Contacto',
+            bookNow:'Reservar', browseTours:'Ver Tours', getQuote:'Cotizar',
+            popularDest:'Destinos Populares', popularTours:'Tours Populares', travelGuides:'Guías de Viaje',
+            viewAll:'Ver Todos los Destinos', viewAllTours:'Ver Todos los Tours', moreGuides:'Más Guías',
+            searchTours:'Buscar Tours', destination:'Destino', duration:'Duración', budget:'Presupuesto',
+            allDest:'Todos los Destinos', allDur:'Todas las Duraciones', allBud:'Todos los Presupuestos',
+            learnMore:'Más información' },
+    'ar': { home:'الرئيسية', tours:'الجولات', destinations:'الوجهات', guides:'أدلة السفر', about:'من نحن', contact:'اتصل بنا',
+            bookNow:'احجز الآن', browseTours:'تصفح الجولات', getQuote:'احصل على عرض',
+            popularDest:'الوجهات الشائعة', popularTours:'الجولات الشائعة', travelGuides:'أدلة السفر',
+            viewAll:'عرض جميع الوجهات', viewAllTours:'عرض جميع الجولات', moreGuides:'المزيد من الأدلة',
+            searchTours:'بحث', destination:'الوجهة', duration:'المدة', budget:'الميزانية',
+            allDest:'جميع الوجهات', allDur:'جميع المدد', allBud:'جميع الميزانيات',
+            learnMore:'اعرف المزيد' }
   };
 
-  loadGT();
+  var langLabelCodes = { 'en':'EN', 'zh-CN':'中文', 'ja':'日本語', 'es':'ES', 'ar':'AR' };
+
+  // Map data-i18n keys to dictionary keys
+  function applyLang(lang) {
+    var dict = I18N[lang] || I18N['en'];
+    // Update nav menu items (may not exist yet if Header.init is still running)
+    var navLinks = document.querySelectorAll('.nav-menu a');
+    var navKeys = ['home','tours','destinations','guides','about','contact'];
+    navLinks.forEach(function(a, i) {
+      if (navKeys[i]) a.textContent = dict[navKeys[i]] || a.textContent;
+    });
+    // Update any element with data-i18n
+    document.querySelectorAll('[data-i18n]').forEach(function(el) {
+      var key = el.getAttribute('data-i18n');
+      if (dict[key]) el.textContent = dict[key];
+    });
+    // Update document direction for Arabic
+    document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+    document.documentElement.lang = lang;
+    // If nav wasn't ready yet, retry after a delay
+    if (navLinks.length === 0 && lang !== 'en') {
+      setTimeout(function() { applyLang(lang); }, 500);
+    }
+  }
 
   document.addEventListener("DOMContentLoaded", function () {
     var dd = document.getElementById("lang-dropdown");
@@ -819,9 +877,8 @@ window.MobileNav = MobileNav;
     var btn = dd.querySelector(".lang-btn");
     var menu = dd.querySelector(".lang-menu");
     var items = menu.querySelectorAll("li");
-
-        var langLabelCodes = { 'en': 'EN', 'zh-CN': '中文', 'ja': '日本語', 'es': 'ES', 'ar': 'AR' };
     var btnLabel = btn.querySelector('.lang-btn-label');
+
     function setActive(lang) {
       items.forEach(function (li) {
         li.classList.toggle("active", li.dataset.lang === lang);
@@ -832,17 +889,9 @@ window.MobileNav = MobileNav;
     }
 
     function changeLanguage(lang) {
-      var tries = 0;
-      var iv = setInterval(function () {
-        var sel = document.querySelector(".goog-te-combo");
-        if (sel) {
-          sel.value = lang;
-          sel.dispatchEvent(new Event("change"));
-          clearInterval(iv);
-        } else if (++tries > 40) {
-          clearInterval(iv);
-        }
-      }, 250);
+      applyLang(lang);
+      setActive(lang);
+      try { localStorage.setItem("hyt_lang", lang); } catch (err) {}
     }
 
     btn.addEventListener("click", function (e) {
@@ -861,29 +910,16 @@ window.MobileNav = MobileNav;
         e.stopPropagation();
         var lang = this.dataset.lang;
         changeLanguage(lang);
-        setActive(lang);
         dd.classList.remove("open");
         btn.setAttribute("aria-expanded", "false");
-        try { localStorage.setItem("hyt_lang", lang); } catch (err) {}
       });
     });
-
-    // Observe Google Translate changes (when user changes via banner/dropdown)
-    var langObserver = new MutationObserver(function () {
-      var sel = document.querySelector(".goog-te-combo");
-      if (!sel || !sel.value) return;
-      var cur = sel.value;
-      setActive(cur);
-      try { localStorage.setItem("hyt_lang", cur); } catch (err) {}
-    });
-    langObserver.observe(document.documentElement, { childList: true, subtree: true });
 
     // Restore saved preference
     try {
       var saved = localStorage.getItem("hyt_lang");
       if (saved && saved !== "en") {
-        setActive(saved);
-        setTimeout(function () { changeLanguage(saved); }, 1500);
+        changeLanguage(saved);
       }
     } catch (err) {}
   });
