@@ -42,7 +42,7 @@ const BookingPage = {
           </div>
         </div>
         <div class="booking-summary-price">
-          <div class="price" style="font-size:var(--font-size-2xl)">¥${r.price.toLocaleString()}</div>
+          <div class="price" style="font-size:var(--font-size-2xl)">$${r.price.toLocaleString("en-US")}</div>
 <div class="price-unit">From /person</div>
         </div>
       `;
@@ -74,7 +74,7 @@ const BookingPage = {
 
     const totalEl = document.getElementById('total-price');
     if (totalEl) {
-      totalEl.textContent = '¥' + total.toLocaleString();
+      totalEl.textContent = '$' + total.toLocaleString('en-US');
     }
   },
 
@@ -151,7 +151,7 @@ if (btn) { btn.disabled = false; btn.textContent = 'Submit Booking'; }
               </div>
               <div style="display:flex;justify-content:space-between;">
 <span style="color:var(--color-text-secondary);">Total Amount</span>
-                <span style="font-weight:bold;color:var(--color-accent);font-size:var(--font-size-xl);">¥${order.totalPrice.toLocaleString()}</span>
+                <span style="font-weight:bold;color:var(--color-accent);font-size:var(--font-size-xl);">$${order.totalPrice.toLocaleString("en-US")}</span>
               </div>
             </div>
             <p style="font-size:var(--font-size-sm);color:var(--color-text-secondary);margin-bottom:var(--space-xl);">

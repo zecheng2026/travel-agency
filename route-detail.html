@@ -224,9 +224,9 @@
         }
 
         var priceBig = document.getElementById('price-big');
-        if (priceBig) priceBig.textContent = '¥' + (route.price || 0);
+        if (priceBig) priceBig.textContent = '$' + (route.price || 0).toLocaleString('en-US');
         var priceOrig = document.getElementById('price-original');
-        if (priceOrig) priceOrig.textContent = '¥' + (route.originalPrice || Math.round((route.price || 0) * 1.2));
+        if (priceOrig) priceOrig.textContent = '$' + (route.originalPrice || Math.round((route.price || 0) * 1.2)).toLocaleString('en-US');
         var bookingLink = document.getElementById('booking-btn');
         if (bookingLink) bookingLink.href = 'booking.html?route=' + route.id;
 

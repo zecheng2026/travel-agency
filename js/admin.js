@@ -620,6 +620,23 @@ const AdminOrders = {
 };
 
 // ===== 留言管理 =====
+
+  // Subject/Spot Type label mapping
+  const SPOT_LABELS = {
+  "historical": "Historical & Cultural",
+  "natural": "Natural Scenery",
+  "geological": "Geological Wonders",
+  "folk": "Folk & Ethnic Culture",
+  "museum": "Museum & Exhibition",
+  "theme": "Theme & Amusement",
+  "wellness": "Wellness Resort",
+  "landmark": "City Landmark",
+  "other": "Others"
+};
+  function spotLabel(v) {
+    if (!v) return '';
+    return SPOT_LABELS[v] || v;
+  }
 const AdminMessages = {
   page: 1,
   pageSize: 10,
@@ -645,7 +662,7 @@ const AdminMessages = {
         <td>${m.id}</td>
         <td>${m.name}</td>
         <td>${m.phone}</td>
-        <td>${m.subject || '-'}</td>
+        <td>${spotLabel(m.subject)}</td>
         <td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${m.content || '-'}</td>
         <td><span class="status-badge ${m.status==='unread'?'warning':'success'}">${m.status==='unread'?'未回复':'已回复'}</span></td>
         <td>${m.createTime || '-'}</td>
@@ -690,7 +707,9 @@ const AdminMessages = {
           <div><strong>电话：</strong>${msg.phone}</div>
           <div><strong>邮箱：</strong>${msg.email || '-'}</div>
           <div><strong>时间：</strong>${msg.createTime || '-'}</div>
-        </div>
+        
+          <div style="grid-column:1 / -1;"><strong>咨询类型：</strong>${spotLabel(msg.subject)}</div>
+        
       </div>
       <div style="margin-bottom:16px;">
         <div style="font-size:12px;color:var(--color-text-secondary);margin-bottom:6px;">咨询内容</div>
@@ -1059,13 +1078,29 @@ const AdminDestinations = {
     `;
     AdminModal.open(id ? '编辑目的地' : '新增目的地', body, () => this.save(), 'lg');
     AdminImageUpload.setup('d');
+    // setup uploaders for existing highlight rows
+    (dest.highlights || []).forEach((_, i) => AdminImageUpload.setup('hl-' + (i + 1)));
   },
 
   hlRowHtml(h, i) {
     return `
-      <div class="mini-row">
+      <div class="mini-row hl-row">
         <input type="text" class="admin-form-control hl-name" placeholder="景点名称（如：玉龙雪山）" value="${esc(h.name || '')}">
         <input type="text" class="admin-form-control hl-desc" placeholder="一句话介绍" value="${esc(h.desc || '')}">
+        <div class="image-uploader" style="flex:1 1 100%;">
+          <input type="file" id="hl-${i}-cover-file" accept="image/*" style="display:none">
+          <div class="image-uploader-area" id="hl-${i}-cover-area">
+            <img class="upload-preview" id="hl-${i}-cover-preview" src="${esc(h.image || '')}" style="${h.image?'':'display:none;'}">
+            <div class="image-uploader-placeholder" id="hl-${i}-cover-placeholder" style="${h.image?'display:none;':''}">
+              <i class="fas fa-cloud-upload-alt"></i>
+              <p>点击或拖拽上传景点照片</p>
+            </div>
+          </div>
+          <div class="image-uploader-url-row">
+            <input type="text" class="admin-form-control hl-cover-url" id="hl-${i}-cover-url" placeholder="或粘贴图片URL" value="${esc(h.image || '')}">
+            <button type="button" class="btn btn-sm btn-secondary" onclick="AdminImageUpload.clear('hl-${i}')" style="flex-shrink:0;"><i class="fas fa-times"></i></button>
+          </div>
+        </div>
         <button type="button" class="btn-icon danger" onclick="AdminDestinations.removeHighlightRow(this)"><i class="fas fa-trash"></i></button>
       </div>`;
   },
@@ -1075,7 +1110,9 @@ const AdminDestinations = {
     if (!wrap) return;
     const empty = wrap.querySelector('.empty-hint');
     if (empty) empty.remove();
-    wrap.insertAdjacentHTML('beforeend', this.hlRowHtml({}, wrap.querySelectorAll('.mini-row').length + 1));
+    const idx = wrap.querySelectorAll('.mini-row').length + 1;
+    wrap.insertAdjacentHTML('beforeend', this.hlRowHtml({}, idx));
+    AdminImageUpload.setup('hl-' + idx);
   },
 
   removeHighlightRow(btn) {
@@ -1090,10 +1127,11 @@ const AdminDestinations = {
   async save() {
     const name = document.getElementById('d-name').value.trim();
     if (!name) { Toast.error('请填写目的地名称'); return false; }
-    const highlights = Array.from(document.querySelectorAll('#d-hl-rows .mini-row')).map(row => ({
+    const highlights = Array.from(document.querySelectorAll('#d-hl-rows .mini-row')).map((row, i) => ({
       name: row.querySelector('.hl-name') ? row.querySelector('.hl-name').value.trim() : '',
-      desc: row.querySelector('.hl-desc') ? row.querySelector('.hl-desc').value.trim() : ''
-    })).filter(h => h.name || h.desc);
+      desc: row.querySelector('.hl-desc') ? row.querySelector('.hl-desc').value.trim() : '',
+      image: AdminImageUpload.getValue('hl-' + (i + 1)) || ''
+    })).filter(h => h.name || h.desc || h.image);
     const recommendedRoutes = Array.from(document.querySelectorAll('.rec-route-cb:checked')).map(cb => cb.value);
     const cover = AdminImageUpload.getValue('d');
     const coverWidth = parseInt(document.getElementById('d-coverWidth').value) || 0;

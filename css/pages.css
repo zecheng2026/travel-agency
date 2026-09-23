@@ -1986,6 +1986,16 @@
   line-height: 1.7;
   padding-left: 22px;
 }
+.dest-attraction-image {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  margin-top: 10px;
+  border-radius: 6px;
+  object-fit: cover;
+  background: #f0f0f0;
+}
 
 .dest-detail-body > h2:not(:first-child) {
   font-size: 1.4rem;
