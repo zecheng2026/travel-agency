@@ -693,6 +693,20 @@
           var updatePH = function() { ed.classList.toggle('is-empty', !ed.textContent.trim()); };
           ed.addEventListener('input', updatePH);
           ed.addEventListener('blur', updatePH);
+
+          // Click on image manually selects it so width/full buttons can find it via _getSelectedImage.
+          // Chrome/Edge focus IMG on click but do NOT add it to window.getSelection(), so without
+          // this handler the user clicks the image then clicks Width and sees 'select image first'.
+          ed.addEventListener('click', function(e) {
+            var t = e.target;
+            if (t && t.tagName === 'IMG' && ed.contains(t)) {
+              var sel = window.getSelection();
+              var range = document.createRange();
+              range.selectNode(t);
+              sel.removeAllRanges();
+              sel.addRange(range);
+            }
+          });
           updatePH();
 
           this.instances[textareaId] = { textareaId: textareaId, editor: ed, textarea: ta, toolbar: tb };
@@ -754,12 +768,21 @@
 
         _getSelectedImage: function(ed) {
           var sel = window.getSelection();
-          if (!sel || !sel.rangeCount) return null;
-          var node = sel.anchorNode;
-          while (node && node !== ed) {
-            if (node.nodeType === 1 && node.tagName === 'IMG') return node;
-            node = node.parentNode;
+          if (sel && sel.rangeCount) {
+            var node = sel.anchorNode;
+            while (node && node !== ed) {
+              if (node.nodeType === 1 && node.tagName === 'IMG') return node;
+              node = node.parentNode;
+            }
+            var fnode = sel.focusNode;
+            while (fnode && fnode !== ed) {
+              if (fnode.nodeType === 1 && fnode.tagName === 'IMG') return fnode;
+              fnode = fnode.parentNode;
+            }
           }
+          // Fallback: document.activeElement (Chrome/Edge focus IMG on click without selecting)
+          var active = document.activeElement;
+          if (active && active.tagName === 'IMG' && ed.contains(active)) return active;
           return null;
         },
 

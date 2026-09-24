@@ -775,4 +775,5 @@ textarea.form-control { resize: vertical; min-height: 80px; }
   display: block;
   margin: 12px auto;
   border-radius: 6px;
+  cursor: pointer;
 }
