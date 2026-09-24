@@ -705,15 +705,23 @@
           // mousedown but never add it to window.getSelection(). We must listen on MOUSEDOWN (not
           // click) and call preventDefault to stop the browser from moving focus away from ed.
           // Without this, _setImageWidth/_setImageFull find no IMG and alert 'select image first'.
+          // On mousedown on an IMG: stop the browser from grabbing focus, and remember which IMG
+          // was clicked by storing a direct reference on ed itself. We cannot rely on
+          // window.getSelection() because Range.selectNode(IMG) makes anchorNode the IMG's PARENT
+          // (not the IMG) and Chrome never adds the IMG element to a text selection.
           ed.addEventListener('mousedown', function(e) {
             var t = e.target;
             if (t && t.tagName === 'IMG' && ed.contains(t)) {
               e.preventDefault();
-              var sel = window.getSelection();
-              var range = document.createRange();
-              range.selectNode(t);
-              sel.removeAllRanges();
-              sel.addRange(range);
+              ed.__lastSelectedImg = t;
+              // Best-effort visual selection (gives the IMG a blue outline so the user sees it)
+              try {
+                var sel = window.getSelection();
+                var range = document.createRange();
+                range.selectNode(t);
+                sel.removeAllRanges();
+                sel.addRange(range);
+              } catch (e2) {}
             }
           });
           updatePH();
@@ -776,6 +784,18 @@
         },
 
         _getSelectedImage: function(ed) {
+          // Method 1 (PRIMARY): the IMG stored on mousedown. Survives focus changes, button clicks,
+          // and any selection weirdness. The contains() check guards against stale refs after the
+          // user deletes the image.
+          if (ed.__lastSelectedImg && ed.__lastSelectedImg.parentNode && ed.contains(ed.__lastSelectedImg)) {
+            return ed.__lastSelectedImg;
+          }
+          // Method 2: Chrome/Edge focus the IMG on mousedown without selecting it (activeElement=IMG)
+          var active = document.activeElement;
+          if (active && active.tagName === 'IMG' && ed.contains(active)) return active;
+          // Method 3 (legacy): walk up from the selection anchor looking for an IMG ancestor.
+          // Range.selectNode(IMG) puts anchorNode at the IMG's parent so this rarely matches, but
+          // keep it as a final fallback in case some browser does include the IMG itself.
           var sel = window.getSelection();
           if (sel && sel.rangeCount) {
             var node = sel.anchorNode;
@@ -789,9 +809,6 @@
               fnode = fnode.parentNode;
             }
           }
-          // Fallback: document.activeElement (Chrome/Edge focus IMG on click without selecting)
-          var active = document.activeElement;
-          if (active && active.tagName === 'IMG' && ed.contains(active)) return active;
           return null;
         },
 
