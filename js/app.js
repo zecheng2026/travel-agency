@@ -410,7 +410,13 @@ const Header = {
         const iconEl = logoEl.querySelector('.logo-icon');
         const spanEl = logoEl.querySelector('span');
         if (s.logo && iconEl) {
+          // The .logo-icon container has a green gradient bg in CSS. When a logo image is shown
+          // inside it, transparent pixels on the image would show that green through, so strip
+          // the background while a real image is in place.
+          iconEl.classList.add('has-image');
           iconEl.innerHTML = `<img src="${s.logo}" alt="logo" style="width:100%;height:100%;object-fit:contain;border-radius:6px;">`;
+        } else if (iconEl) {
+          iconEl.classList.remove('has-image');
         }
         if (s.siteName && spanEl) spanEl.textContent = s.siteName;
       }
@@ -475,7 +481,7 @@ copyright: s.copyright || '© 2026 HuanYou Travel. All rights reserved.',
         <div class="footer-grid">
           <div>
             <div class="footer-brand">
-              <div class="footer-brand-icon">${settings.logo ? `<img src="${settings.logo}" alt="logo" style="width:100%;height:100%;object-fit:contain;border-radius:6px;">` : '<i class="fas fa-paper-plane"></i>'}</div>
+              <div class="footer-brand-icon${settings.logo ? ' has-image' : ''}">${settings.logo ? `<img src="${settings.logo}" alt="logo" style="width:100%;height:100%;object-fit:contain;border-radius:6px;">` : '<i class="fas fa-paper-plane"></i>'}</div>
               <span>${settings.siteName}</span>
             </div>
             <p class="footer-desc">${settings.description}</p>

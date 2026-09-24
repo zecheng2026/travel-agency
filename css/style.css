@@ -611,6 +611,14 @@ select.form-control {
   font-size: var(--font-size-xl);
 }
 
+/* When a user-uploaded logo image is rendered, transparent pixels on the PNG would show
+   the green gradient bg through. Hide the bg + shadow so the image sits on the page color. */
+.logo-icon.has-image,
+.footer-brand-icon.has-image {
+  background: transparent;
+  box-shadow: none;
+}
+
 .nav-menu {
   display: flex;
   align-items: center;
