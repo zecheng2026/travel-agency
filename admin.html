@@ -749,7 +749,7 @@
           var safeUrl = String(url).replace(/"/g,'&quot;');
           var safeAlt = alt.replace(/"/g,'&quot;');
           document.execCommand('insertHTML', false,
-            '<img src="' + safeUrl + '" alt="' + safeAlt + '" style="max-width:100%;display:block;margin:12px auto;border-radius:6px;">');
+            '<img src="' + safeUrl + '" alt="' + safeAlt + '">');
         },
 
         _getSelectedImage: function(ed) {

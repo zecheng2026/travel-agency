@@ -675,7 +675,7 @@
 
 /* Rich Text Editor (Simple) */
 .rich-editor {
-  min-height: 300px;
+  min-height: 900px;
   padding: var(--space-lg);
   border: 1.5px solid var(--color-border);
   border-radius: var(--radius-md);
@@ -704,16 +704,18 @@
   border-radius: var(--radius-md) var(--radius-md) 0 0;
 }
 .rich-editor-toolbar button {
-  width: 34px;
-  height: 32px;
+  min-width: 44px;
+  height: 40px;
+  padding: 0 12px;
   border: 1px solid transparent;
   background: transparent;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
   color: var(--color-text);
-  font-size: 14px;
+  font-size: 16px;
   transition: background 0.15s, border-color 0.15s;
 }
+.rich-editor-toolbar button i { font-size: 18px; }
 .rich-editor-toolbar button:hover {
   background: #fff;
   border-color: var(--color-border);
