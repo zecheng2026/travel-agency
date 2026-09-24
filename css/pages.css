@@ -704,18 +704,18 @@
   border-radius: var(--radius-md) var(--radius-md) 0 0;
 }
 .rich-editor-toolbar button {
-  min-width: 44px;
-  height: 40px;
-  padding: 0 12px;
+  min-width: 70px;
+  height: 70px;
+  padding: 0 16px;
   border: 1px solid transparent;
   background: transparent;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
   color: var(--color-text);
-  font-size: 16px;
+  font-size: 20px;
   transition: background 0.15s, border-color 0.15s;
 }
-.rich-editor-toolbar button i { font-size: 18px; }
+.rich-editor-toolbar button i { font-size: 28px; }
 .rich-editor-toolbar button:hover {
   background: #fff;
   border-color: var(--color-border);
