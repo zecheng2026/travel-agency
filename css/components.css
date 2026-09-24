@@ -1056,16 +1056,10 @@
   align-items: center;
 }
 
-.about-image {
-  border-radius: var(--radius-xl);
-  overflow: hidden;
-  box-shadow: var(--shadow-lg);
-}
-
 .about-image img {
   width: 100%;
-  height: 400px;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
 }
 
 .about-content {
@@ -1174,7 +1168,6 @@
   .itinerary-day-image { display: none; }
   .about-grid { grid-template-columns: 1fr; }
   .about-image { order: -1; }
-  .about-image img { height: 300px; }
   .counter-grid { grid-template-columns: repeat(2, 1fr); }
   .highlights-grid { grid-template-columns: 1fr; }
   .filter-bar-inner { flex-direction: column; }
