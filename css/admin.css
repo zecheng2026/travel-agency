@@ -714,3 +714,65 @@ textarea.form-control { resize: vertical; min-height: 80px; }
   .dashboard-stats { grid-template-columns: 1fr; }
   .admin-user-info .admin-user-meta { display: none; }
 }
+
+/* ===== RichEditor Styles (mirrored from css/pages.css so admin.html can use them without loading pages.css) ===== */
+.rich-editor {
+  min-height: 900px;
+  padding: var(--space-lg);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-family: var(--font-primary);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-relaxed);
+  outline: none;
+  resize: vertical;
+  background: var(--color-bg-white);
+}
+
+.rich-editor:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.12);
+}
+
+.rich-editor-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 8px;
+  margin-bottom: 0;
+  background: #f5f7f5;
+  border: 1.5px solid var(--color-border);
+  border-bottom: none;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+.rich-editor-toolbar button {
+  min-width: 70px;
+  height: 70px;
+  padding: 0 16px;
+  border: 1px solid transparent;
+  background: transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--color-text);
+  font-size: 20px;
+  transition: background 0.15s, border-color 0.15s;
+}
+.rich-editor-toolbar button i { font-size: 28px; }
+.rich-editor-toolbar button:hover {
+  background: #fff;
+  border-color: var(--color-border);
+}
+.rich-editor + .rich-editor-toolbar { display: none; } /* old single editor kept for fallback */
+.rich-editor.is-empty::before {
+  content: attr(data-placeholder);
+  color: #aaa;
+  pointer-events: none;
+  display: block;
+}
+.rich-editor img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 12px auto;
+  border-radius: 6px;
+}
