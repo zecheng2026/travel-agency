@@ -666,6 +666,13 @@
           ta.parentNode.insertBefore(ed, ta);
 
           var self = this;
+          // Stop toolbar buttons from stealing focus on mousedown — otherwise activeElement becomes
+          // the <button> and the selection inside ed is cleared, so _getSelectedImage() returns null.
+          tb.addEventListener('mousedown', function(e) {
+            if (e.target.closest('button[data-cmd]')) {
+              e.preventDefault();
+            }
+          });
           tb.addEventListener('click', function(e) {
             var btn = e.target.closest('button[data-cmd]');
             if (!btn) return;
@@ -694,12 +701,14 @@
           ed.addEventListener('input', updatePH);
           ed.addEventListener('blur', updatePH);
 
-          // Click on image manually selects it so width/full buttons can find it via _getSelectedImage.
-          // Chrome/Edge focus IMG on click but do NOT add it to window.getSelection(), so without
-          // this handler the user clicks the image then clicks Width and sees 'select image first'.
-          ed.addEventListener('click', function(e) {
+          // Click on image manually selects it. Workaround for Chrome/Edge which focus the IMG on
+          // mousedown but never add it to window.getSelection(). We must listen on MOUSEDOWN (not
+          // click) and call preventDefault to stop the browser from moving focus away from ed.
+          // Without this, _setImageWidth/_setImageFull find no IMG and alert 'select image first'.
+          ed.addEventListener('mousedown', function(e) {
             var t = e.target;
             if (t && t.tagName === 'IMG' && ed.contains(t)) {
+              e.preventDefault();
               var sel = window.getSelection();
               var range = document.createRange();
               range.selectNode(t);
