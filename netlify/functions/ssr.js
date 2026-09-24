@@ -294,9 +294,9 @@ function renderRoute(tpl, route) {
     (route.destination ? `<span><i class="fas fa-map-marker-alt"></i> ${esc(route.destination)}</span>` : '') +
     (tagsHtml ? `<span><i class="fas fa-tag"></i> ${tagsHtml}</span>` : '');
   html = html.replace(/(<div class="route-detail-meta" id="info-meta">)[^<]*(<\/div>)/, `$1${metaHtml}$2`);
-  html = html.replace(/(<span class="price-big[^"]*" id="price-big">)[^<]*(<\/span>)/, `$1¥${route.price || 0}$2`);
+  html = html.replace(/(<span class="price-big[^"]*" id="price-big">)[^<]*(<\/span>)/, `$1$${route.price || 0}$2`);
   const origPrice = route.originalPrice || Math.round((route.price || 0) * 1.2);
-  html = html.replace(/(<span class="price-original[^"]*" id="price-original">)[^<]*(<\/span>)/, `$1¥${origPrice}$2`);
+  html = html.replace(/(<span class="price-original[^"]*" id="price-original">)[^<]*(<\/span>)/, `$1$${origPrice}$2`);
   html = html.replace(/(<a[^>]*id="booking-btn"[^>]*href=")[^"]*(")/, `$1booking.html?route=${route.id}$2`);
   let summary = route.description || route.summary || '';
   if (!summary && route.highlights && route.highlights.length) {
@@ -355,7 +355,7 @@ function makeRouteCard(route) {
   const nights = route.nights || Math.max(0, (route.days || 0) - 1);
   const highlights = (route.highlights || []).slice(0, 3).map(h => `<span class="route-card-highlight">${esc(h)}</span>`).join('');
   const origPriceHtml = (route.originalPrice > route.price)
-    ? `<span class="route-card-price-original">¥${route.originalPrice.toLocaleString()}</span>` : '';
+    ? `<span class="route-card-price-original">$${route.originalPrice.toLocaleString()}</span>` : '';
 
   return `<article class="route-card" data-id="${esc(route.id)}">
     <div class="route-card-image">
@@ -375,7 +375,7 @@ function makeRouteCard(route) {
       <div class="route-card-highlights">${highlights}</div>
       <div class="route-card-footer">
         <div class="route-card-price">
-          <span class="route-card-price-value">¥${(route.price || 0).toLocaleString()}</span>
+          <span class="route-card-price-value">$${(route.price || 0).toLocaleString()}</span>
           <span class="route-card-price-unit">/person</span>
           ${origPriceHtml}
         </div>

@@ -190,9 +190,9 @@ const cls = tag === 'Popular' ? 'badge-hot' : tag === 'New' ? 'badge-new-badge' 
           </div>
           <div class="route-card-footer">
             <div class="route-card-price">
-              <span class="route-card-price-value">¥${route.price.toLocaleString()}</span>
+              <span class="route-card-price-value">$${route.price.toLocaleString()}</span>
 <span class="route-card-price-unit">/person</span>
-              ${route.originalPrice > route.price ? `<span class="route-card-price-original">¥${route.originalPrice.toLocaleString()}</span>` : ''}
+              ${route.originalPrice > route.price ? `<span class="route-card-price-original">$${route.originalPrice.toLocaleString()}</span>` : ''}
             </div>
 <a href="route-detail.html?id=${route.id}" class="route-card-btn">View Details</a>
           </div>
